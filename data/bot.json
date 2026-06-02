@@ -1,0 +1,567 @@
+{
+  "users": {
+    "227393251893295@lid": {
+      "jid": "227393251893295@lid",
+      "name": "Johane Mahumane",
+      "gemas": 210,
+      "wins": 0,
+      "losses": 1,
+      "games": 1,
+      "last_daily": "2026-06-02T07:39:35.474Z",
+      "last_mine": null,
+      "created_at": "2026-06-02T06:50:01.784Z",
+      "bank": 0,
+      "xp": 55,
+      "level": 1,
+      "pontos": 6,
+      "streak": 1,
+      "job": "desempregado",
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": "2026-06-02T09:04:31.544Z",
+      "last_work": null,
+      "last_crime": null,
+      "last_bank_interest": null,
+      "prison_until": null,
+      "achievements": {},
+      "stats": {
+        "robs": 2,
+        "works": 5
+      },
+      "inventory": {
+        "picareta": 0,
+        "bond7": 0,
+        "vingancagema": 0
+      },
+      "work_today_count": 5,
+      "work_today_date": "Tue Jun 02 2026",
+      "cassino_today_count": 0,
+      "cassino_today_date": null,
+      "warnings": 0,
+      "partner": null,
+      "relationship_status": "solteiro",
+      "last_paquerar": "2026-06-02T08:44:52.255Z",
+      "historico": [
+        {
+          "amount": 8,
+          "reason": "🚨 Multa recebida de bullet train",
+          "balance": 99,
+          "ts": "2026-06-02T09:00:14.664Z"
+        }
+      ]
+    },
+    "129120021307427@lid": {
+      "jid": "129120021307427@lid",
+      "name": "Nelmtriv",
+      "gemas": 409,
+      "wins": 15,
+      "losses": 7,
+      "games": 22,
+      "last_daily": "2026-06-02T06:52:35.818Z",
+      "last_mine": "2026-06-02T08:58:49.914Z",
+      "created_at": "2026-06-02T06:50:27.415Z",
+      "bank": 0,
+      "xp": 155,
+      "level": 2,
+      "pontos": 183,
+      "streak": 0,
+      "job": "desempregado",
+      "mine_today_count": 1,
+      "mine_today_date": "Tue Jun 02 2026",
+      "last_rob": "2026-06-02T09:09:37.185Z",
+      "last_work": "2026-06-02T08:10:09.488Z",
+      "last_crime": "2026-06-02T08:07:09.861Z",
+      "last_bank_interest": null,
+      "prison_until": null,
+      "achievements": {
+        "primeiraVitoria": "2026-06-02T07:54:01.779Z"
+      },
+      "stats": {
+        "works": 4,
+        "wins": 10,
+        "robFails": 2,
+        "bankDeposited": 200,
+        "robs": 1,
+        "mines": 1
+      },
+      "inventory": {
+        "picareta": 19,
+        "bond7": 1,
+        "vingancagema": 0,
+        "escudo": 2
+      },
+      "work_today_count": 4,
+      "work_today_date": "Tue Jun 02 2026",
+      "cassino_today_count": 1,
+      "cassino_today_date": "Tue Jun 02 2026",
+      "warnings": 0,
+      "partner": null,
+      "relationship_status": "solteiro",
+      "last_paquerar": null,
+      "historico": [
+        {
+          "amount": -20,
+          "reason": "🚨 Multa por roubo falhado a Odmila",
+          "balance": 114,
+          "ts": "2026-06-02T09:09:37.187Z"
+        }
+      ]
+    },
+    "261494973427951@lid": {
+      "jid": "261494973427951@lid",
+      "name": "Carlos Jr",
+      "gemas": 115,
+      "wins": 0,
+      "losses": 0,
+      "games": 0,
+      "last_daily": "2026-06-02T07:24:54.055Z",
+      "last_mine": null,
+      "created_at": "2026-06-02T06:50:31.146Z",
+      "bank": 0,
+      "xp": 0,
+      "level": 1,
+      "pontos": 0,
+      "streak": 1,
+      "job": "desempregado",
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": null,
+      "last_work": null,
+      "last_crime": null,
+      "last_bank_interest": null,
+      "prison_until": null,
+      "achievements": {},
+      "stats": {},
+      "inventory": {
+        "picareta": 0,
+        "bond7": 0,
+        "vingancagema": 0
+      }
+    },
+    "176089632653348@lid": {
+      "jid": "176089632653348@lid",
+      "name": "Odmila",
+      "gemas": 126,
+      "wins": 26,
+      "losses": 7,
+      "games": 33,
+      "last_daily": "2026-06-02T07:12:27.214Z",
+      "last_mine": "2026-06-02T07:13:24.839Z",
+      "created_at": "2026-06-02T06:50:37.436Z",
+      "bank": 400,
+      "xp": 163,
+      "level": 2,
+      "pontos": 215,
+      "streak": 0,
+      "job": "desempregado",
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": "2026-06-02T09:32:09.227Z",
+      "last_work": "2026-06-02T07:36:24.023Z",
+      "last_crime": "2026-06-02T07:26:29.915Z",
+      "last_bank_interest": null,
+      "prison_until": null,
+      "achievements": {
+        "primeiraVitoria": "2026-06-02T08:51:46.494Z"
+      },
+      "stats": {
+        "works": 2,
+        "wins": 13,
+        "bankDeposited": 400
+      },
+      "inventory": {
+        "picareta": 0,
+        "bond7": 0,
+        "vingancagema": 0,
+        "escudo": 3
+      },
+      "work_today_count": 1,
+      "work_today_date": "Tue Jun 02 2026",
+      "cassino_today_count": 1,
+      "cassino_today_date": "Tue Jun 02 2026",
+      "warnings": 0,
+      "partner": "275281717768409@lid",
+      "relationship_status": "casado",
+      "last_paquerar": null,
+      "historico": [
+        {
+          "amount": -20,
+          "reason": "🎰 Cassino — perdeu aposta",
+          "balance": 664,
+          "ts": "2026-06-02T09:26:14.655Z"
+        },
+        {
+          "amount": 20,
+          "reason": "🚨 Multa recebida de Nelmtriv",
+          "balance": 687,
+          "ts": "2026-06-02T09:09:37.189Z"
+        }
+      ]
+    },
+    "275281717768409@lid": {
+      "jid": "275281717768409@lid",
+      "name": "T'H",
+      "gemas": 154,
+      "wins": 11,
+      "losses": 2,
+      "games": 13,
+      "last_daily": "2026-06-02T06:52:45.994Z",
+      "last_mine": "2026-06-02T06:56:39.918Z",
+      "created_at": "2026-06-02T06:52:24.185Z",
+      "bank": 80,
+      "xp": 113,
+      "level": 1,
+      "pontos": 77,
+      "streak": 0,
+      "job": "desempregado",
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": "2026-06-02T07:38:47.908Z",
+      "last_work": "2026-06-02T07:37:32.147Z",
+      "last_crime": "2026-06-02T07:26:45.603Z",
+      "last_bank_interest": "2026-06-02T09:43:49.980Z",
+      "prison_until": null,
+      "achievements": {
+        "primeiraVitoria": "2026-06-02T09:50:47.513Z"
+      },
+      "stats": {
+        "works": 1,
+        "robFails": 1,
+        "bankDeposited": 80,
+        "wins": 1
+      },
+      "inventory": {
+        "picareta": 0,
+        "bond7": 0,
+        "vingancagema": 0
+      },
+      "work_today_count": 0,
+      "work_today_date": null,
+      "cassino_today_count": 0,
+      "cassino_today_date": null,
+      "warnings": 0,
+      "partner": "176089632653348@lid",
+      "relationship_status": "casado",
+      "last_paquerar": null
+    },
+    "94309160341738@lid": {
+      "jid": "94309160341738@lid",
+      "name": "Alberto Jó 愛",
+      "gemas": 151,
+      "wins": 14,
+      "losses": 10,
+      "games": 24,
+      "last_daily": "2026-06-02T07:12:50.049Z",
+      "last_mine": "2026-06-02T07:02:10.453Z",
+      "created_at": "2026-06-02T06:52:33.236Z",
+      "bank": 0,
+      "xp": 107,
+      "level": 2,
+      "pontos": 105,
+      "streak": 0,
+      "job": "desempregado",
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": "2026-06-02T07:35:20.584Z",
+      "last_work": "2026-06-02T08:10:56.742Z",
+      "last_crime": "2026-06-02T07:44:33.189Z",
+      "last_bank_interest": "2026-06-02T08:33:19.703Z",
+      "prison_until": null,
+      "achievements": {
+        "primeiraVitoria": "2026-06-02T07:25:00.712Z"
+      },
+      "stats": {
+        "wins": 7,
+        "robFails": 1,
+        "works": 2,
+        "duels": 1,
+        "bankDeposited": 211
+      },
+      "inventory": {
+        "picareta": 0,
+        "bond7": 0,
+        "vingancagema": 0,
+        "escudo": 2
+      },
+      "work_today_count": 1,
+      "work_today_date": "Tue Jun 02 2026",
+      "cassino_today_count": 0,
+      "cassino_today_date": null,
+      "warnings": 0,
+      "partner": null,
+      "relationship_status": "solteiro",
+      "last_paquerar": null
+    },
+    "63114812887096@lid": {
+      "jid": "63114812887096@lid",
+      "name": ".",
+      "gemas": 100,
+      "wins": 0,
+      "losses": 0,
+      "games": 0,
+      "last_daily": null,
+      "last_mine": null,
+      "created_at": "2026-06-02T07:15:19.823Z",
+      "bank": 0,
+      "xp": 0,
+      "level": 1,
+      "pontos": 0,
+      "streak": 0,
+      "job": "desempregado",
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": null,
+      "last_work": null,
+      "work_today_count": 0,
+      "work_today_date": null,
+      "cassino_today_count": 0,
+      "cassino_today_date": null,
+      "last_crime": null,
+      "last_bank_interest": null,
+      "prison_until": null,
+      "achievements": {},
+      "stats": {},
+      "warnings": 0,
+      "partner": null,
+      "relationship_status": "solteiro",
+      "last_paquerar": null,
+      "inventory": {
+        "picareta": 0,
+        "bond7": 0,
+        "vingancagema": 0,
+        "escudo": 0
+      }
+    },
+    "265205959393309@lid": {
+      "jid": "265205959393309@lid",
+      "name": "bullet train",
+      "gemas": 115,
+      "bank": 167,
+      "xp": 85,
+      "level": 1,
+      "pontos": 55,
+      "wins": 5,
+      "losses": 7,
+      "games": 12,
+      "streak": 1,
+      "job": "desempregado",
+      "last_daily": "2026-06-02T07:30:41.688Z",
+      "last_mine": null,
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": "2026-06-02T09:00:14.662Z",
+      "last_work": "2026-06-02T09:08:49.879Z",
+      "last_crime": null,
+      "last_bank_interest": null,
+      "prison_until": null,
+      "achievements": {
+        "primeiraVitoria": "2026-06-02T08:35:50.351Z"
+      },
+      "stats": {
+        "works": 3,
+        "wins": 2,
+        "bankDeposited": 167,
+        "robFails": 1
+      },
+      "inventory": {
+        "picareta": 0,
+        "bond7": 0,
+        "vingancagema": 0
+      },
+      "created_at": "2026-06-02T07:30:41.687Z",
+      "work_today_count": 3,
+      "work_today_date": "Tue Jun 02 2026",
+      "cassino_today_count": 3,
+      "cassino_today_date": "Tue Jun 02 2026",
+      "warnings": 0,
+      "partner": null,
+      "relationship_status": "solteiro",
+      "last_paquerar": null,
+      "historico": [
+        {
+          "amount": -8,
+          "reason": "🚨 Multa por roubo falhado a Johane Mahumane",
+          "balance": 48,
+          "ts": "2026-06-02T09:00:14.663Z"
+        }
+      ]
+    },
+    "198766875410525@lid": {
+      "jid": "198766875410525@lid",
+      "name": "Ayra Mondlhane",
+      "gemas": 65,
+      "bank": 0,
+      "xp": 0,
+      "level": 1,
+      "pontos": 0,
+      "wins": 0,
+      "losses": 0,
+      "games": 0,
+      "streak": 1,
+      "job": "desempregado",
+      "last_daily": "2026-06-02T08:19:28.201Z",
+      "last_mine": null,
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": null,
+      "last_work": null,
+      "work_today_count": 0,
+      "work_today_date": null,
+      "cassino_today_count": 0,
+      "cassino_today_date": null,
+      "last_crime": null,
+      "last_bank_interest": null,
+      "prison_until": null,
+      "achievements": {},
+      "stats": {},
+      "inventory": {
+        "picareta": 0,
+        "bond7": 0,
+        "vingancagema": 0,
+        "escudo": 0
+      },
+      "created_at": "2026-06-02T08:19:28.198Z"
+    },
+    "20341015494756@lid": {
+      "jid": "20341015494756@lid",
+      "name": "20341015494756",
+      "gemas": 50,
+      "bank": 0,
+      "xp": 0,
+      "level": 1,
+      "pontos": 0,
+      "wins": 0,
+      "losses": 0,
+      "games": 0,
+      "streak": 0,
+      "job": "desempregado",
+      "last_daily": null,
+      "last_mine": null,
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": null,
+      "last_work": null,
+      "work_today_count": 0,
+      "work_today_date": null,
+      "cassino_today_count": 0,
+      "cassino_today_date": null,
+      "last_crime": null,
+      "last_bank_interest": null,
+      "prison_until": null,
+      "achievements": {},
+      "stats": {},
+      "warnings": 0,
+      "partner": null,
+      "relationship_status": "solteiro",
+      "last_paquerar": null,
+      "inventory": {
+        "picareta": 0,
+        "bond7": 0,
+        "vingancagema": 0,
+        "escudo": 0
+      },
+      "created_at": "2026-06-02T08:49:11.343Z"
+    },
+    "test@s.whatsapp.net": {
+      "jid": "test@s.whatsapp.net",
+      "name": "Teste",
+      "gemas": 150,
+      "bank": 0,
+      "xp": 0,
+      "level": 1,
+      "pontos": 0,
+      "wins": 0,
+      "losses": 0,
+      "games": 0,
+      "streak": 0,
+      "job": "desempregado",
+      "last_daily": null,
+      "last_mine": null,
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": null,
+      "last_work": null,
+      "work_today_count": 0,
+      "work_today_date": null,
+      "cassino_today_count": 0,
+      "cassino_today_date": null,
+      "last_crime": null,
+      "last_bank_interest": null,
+      "prison_until": null,
+      "achievements": {},
+      "stats": {},
+      "warnings": 0,
+      "partner": null,
+      "relationship_status": "solteiro",
+      "last_paquerar": null,
+      "inventory": {
+        "picareta": 0,
+        "bond7": 0,
+        "vingancagema": 0,
+        "escudo": 0
+      },
+      "created_at": "2026-06-02T09:12:25.491Z"
+    }
+  },
+  "active_games": {
+    "120363426690291595@g.us__forca": {
+      "group_jid": "120363426690291595@g.us",
+      "game_type": "forca",
+      "player_jid": "129120021307427@lid",
+      "state": {
+        "word": "computador",
+        "guessed": [],
+        "errors": 0
+      },
+      "created_at": "2026-06-02T07:19:32.481Z"
+    },
+    "120363426517146462@g.us__forca": {
+      "group_jid": "120363426517146462@g.us",
+      "game_type": "forca",
+      "player_jid": "176089632653348@lid",
+      "state": {
+        "word": "eletricidade",
+        "hint": "Forma de energia relacionada com cargas elétricas em movimento ou em repouso",
+        "guessed": [
+          "a"
+        ],
+        "errors": 0,
+        "lettersUsed": 1
+      },
+      "created_at": "2026-06-02T09:53:05.290Z"
+    }
+  },
+  "revenge": {
+    "176089632653348@lid": {
+      "robberJid": "129120021307427@lid",
+      "groupJid": "120363426517146462@g.us",
+      "expires": "2026-06-02T11:09:37.190Z"
+    },
+    "227393251893295@lid": {
+      "robberJid": "265205959393309@lid",
+      "groupJid": "120363426517146462@g.us",
+      "expires": "2026-06-02T11:00:14.665Z"
+    },
+    "275281717768409@lid": {
+      "robberJid": "227393251893295@lid",
+      "groupJid": "120363426517146462@g.us",
+      "expires": "2026-06-02T09:43:22.958Z"
+    },
+    "265205959393309@lid": {
+      "robberJid": "227393251893295@lid",
+      "groupJid": "120363426517146462@g.us",
+      "expires": "2026-06-02T10:16:04.971Z"
+    },
+    "94309160341738@lid": {
+      "robberJid": "227393251893295@lid",
+      "groupJid": "120363426517146462@g.us",
+      "expires": "2026-06-02T11:04:31.993Z"
+    },
+    "129120021307427@lid": {
+      "robberJid": "176089632653348@lid",
+      "groupJid": "120363426517146462@g.us",
+      "expires": "2026-06-02T11:32:09.228Z"
+    }
+  },
+  "proposals": {}
+}

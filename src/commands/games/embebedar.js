@@ -8,7 +8,7 @@ const { shop } = require('../../config')
 
 const ROB_COOLDOWN_MS = 10 * 60 * 1000
 const MIN_VICTIM_GEMAS = 20
-const SUCCESS_RATE = 0.55   // com Bond7 — 55%
+const SUCCESS_RATE = 0.55
 
 const successStories = [
   'Serviste uma bebida "especial". A vítima ficou tonta e tu agiste.',
@@ -22,8 +22,8 @@ const failStories = [
 ]
 
 module.exports = {
-  name: ['embebedar', 'emb', 'beber', 'bond', 'entortar', 'drogar'],
-  description: 'Embebeda a vítima com Bond7 para roubar (55% sucesso). Requer 🍶 Bond7.',
+  name: ['embebedar', 'emb', 'beber', 'bond', 'entortar', 'drogar', 'embond'],
+  description: 'Embebeda com 🍶 Bond7 (55% sucesso, carteira). Para 100%+banco usa /streeton.',
   category: 'Jogos',
   async execute({ sock, from, msg, sender, pushName, args }) {
     const mentioned = msg.message?.extendedTextMessage?.contextInfo?.mentionedJid
@@ -32,10 +32,16 @@ module.exports = {
         text: [
           `❓ Uso: */embebedar @user*`,
           ``,
-          `🍶 Requer *Bond7* — 55% de sucesso`,
-          `💡 Sem item usa */roubar* (30% sucesso)`,
-          `🛡️ Vítimas com Escudo bloqueiam o ataque!`,
+          `🍶 *Bond7* — 55% de sucesso, rouba apenas carteira`,
+          `🛡️ *Escudo bloqueia Bond7!*`,
+          ``,
+          `🥃 *Para ignorar escudo usa:* */streeton @user*`,
+          `  • 100% de sucesso`,
+          `  • Rouba carteira + banco`,
+          `  • *Ignora escudo!*`,
+          ``,
           `Compra Bond7: */loja comprar bond7* (${gem(shop.bond7.price)})`,
+          `Compra Streeton: */loja comprar streeton* (${gem(shop.streeton.price)})`,
         ].join('\n'),
       }, { quoted: msg }); return
     }
@@ -46,34 +52,21 @@ module.exports = {
     const robber = getUser(sender, pushName)
 
     const limitResult = checkDailyLimit(sender, 'embebedar')
-    if (!limitResult.allowed) {
-      await handleLimitExceeded(sock, from, msg, sender, robber.name, limitResult)
-      return
-    }
+    if (!limitResult.allowed) { await handleLimitExceeded(sock, from, msg, sender, robber.name, limitResult); return }
 
     if (robber.prison_until && new Date(robber.prison_until) > new Date()) {
       await sock.sendMessage(from, { text: `🔒 Estás na prisão!` }, { quoted: msg }); return
     }
 
-    // require Bond7 or Streeton
-    const useStreeton = hasItem(sender, 'streeton')
-    const useBond7   = !useStreeton && hasItem(sender, 'bond7')
-    if (!useStreeton && !useBond7) {
+    if (!hasItem(sender, 'bond7')) {
       await sock.sendMessage(from, {
-        text: [
-          `Precisas de um item para embebedar:`,
-          `🍶 *Bond7* (${gem(shop.bond7.price)}) — 55% sucesso, carteira`,
-          `🥃 *Streeton* (${gem(shop.streeton.price)}) — 100% sucesso, carteira + banco`,
-          `Compra com: */loja comprar bond7* ou */loja comprar streeton*`,
-        ].join('\n'),
+        text: [`🍶 Precisas de *Bond7* para embebedar!`, `Compra: */loja comprar bond7* (${gem(shop.bond7.price)})`].join('\n'),
       }, { quoted: msg }); return
     }
 
     const { ready, remaining } = checkCooldown(robber.last_rob, ROB_COOLDOWN_MS)
     if (!ready) {
-      await sock.sendMessage(from, {
-        text: `⏳ Ainda és reconhecido pelas ruas! Espera *${formatRemaining(remaining)}*.`,
-      }, { quoted: msg }); return
+      await sock.sendMessage(from, { text: `⏳ Espera *${formatRemaining(remaining)}*.` }, { quoted: msg }); return
     }
 
     const victim = getUser(targetJid)
@@ -84,105 +77,55 @@ module.exports = {
       }, { quoted: msg }); return
     }
 
-    // check insurance (time-based, 1 use) — consumed before Bond7
-    const victimFresh = getUser(targetJid)
-    if (victimFresh.insurance_until && new Date(victimFresh.insurance_until) > new Date()) {
+    // check insurance
+    if (victim.insurance_until && new Date(victim.insurance_until) > new Date()) {
+      const penalty = Math.floor(robber.gemas * 0.20)
       const { getData, save } = require('../../database/db')
       const db = getData()
-      const penalty = Math.floor(robber.gemas * 0.20)
       db.users[sender].gemas = Math.max(0, (db.users[sender].gemas || 0) - penalty)
       save()
       useItem(sender, 'bond7')
       setLastRob(sender)
       setRevenge(targetJid, sender, from)
       const updR = getUser(sender)
-      const insLeft = formatRemaining(new Date(victimFresh.insurance_until).getTime() - Date.now())
+      const insLeft = formatRemaining(new Date(victim.insurance_until).getTime() - Date.now())
       await sock.sendMessage(from, {
         text: [
           `🔐 *Seguro activo!*`,
-          ``,
-          `*${robber.name}* tentou embebedar ${mention(targetJid)}, mas o seguro neutralizou tudo!`,
+          `*${robber.name}* tentou embebedar ${mention(targetJid)}, mas o seguro bloqueou!`,
           `🍶 Bond7 desperdiçado + 💸 Penalização: *-${gem(penalty)}*`,
-          `💳 Saldo: ${gem(updR.gemas)}`,
-          `⏳ Seguro de ${mention(targetJid)} activo por mais *${insLeft}*`,
-          ``,
-          `⚠️ ${mention(targetJid)}, podes vingar-te quando quiseres!`,
+          `💳 Saldo: ${gem(updR.gemas)} | ⏳ Seguro activo por mais *${insLeft}*`,
+          `⚠️ ${mention(targetJid)}, podes vingar-te!`,
         ].join('\n'),
         mentions: [targetJid],
       }); return
     }
 
-    // check shield — shield blocks even Bond7!
+    // check shield — blocks Bond7
     if (hasItem(targetJid, 'escudo')) {
       useItem(targetJid, 'escudo')
-      // Bond7 also consumed (victim refused / was immune)
       useItem(sender, 'bond7')
       setLastRob(sender)
       const fine = Math.max(15, Math.floor(robber.gemas * (0.15 + Math.random() * 0.10)))
       removeGemas(sender, fine, `🛡️ Penalizado por tentar embebedar ${victim.name} (escudo)`)
-      addGemas(targetJid, fine, `🛡️ Compensação: ${robber.name} tentou embebedar-te`)
+      addGemas(targetJid, fine, `🛡️ Compensação de ${robber.name}`)
       setRevenge(targetJid, sender, from)
       const shieldLeft = getUser(targetJid).inventory?.escudo || 0
       const updatedRobber = getUser(sender)
-
       await sock.sendMessage(from, {
         text: [
           `🛡️ *Escudo activado!*`,
-          ``,
-          `*${robber.name}* tentou embebedar ${mention(targetJid)}, mas o escudo neutralizou o Bond7!`,
-          `🍶 Bond7 desperdiçado + 💸 Penalização: *-${gem(fine)}* (pagos a ${mention(targetJid)})`,
-          `💳 Saldo: ${gem(updatedRobber.gemas)}`,
-          `🛡️ Escudo de ${mention(targetJid)}: ${shieldLeft} bloqueio(s) restantes`,
-          ``,
-          `⚠️ ${mention(targetJid)}, podes vingar-te quando quiseres!`,
+          `*${robber.name}* tentou embebedar ${mention(targetJid)}, mas o escudo bloqueou!`,
+          `🍶 Bond7 desperdiçado + 💸 Penalização: *-${gem(fine)}*`,
+          `💳 Saldo: ${gem(updatedRobber.gemas)} | 🛡️ Escudo restante: ${shieldLeft}`,
+          `⚠️ ${mention(targetJid)}, podes vingar-te!`,
         ].join('\n'),
         mentions: [targetJid],
-      })
-      return
+      }); return
     }
 
-    setLastRob(sender)
-
-    // ── STREETON: 100% success, steals from wallet + bank ──────────────────
-    if (useStreeton) {
-      useItem(sender, 'streeton')
-      const victimTotal = (victim.gemas || 0) + (victim.bank || 0)
-      const pct = 0.35 + Math.random() * 0.20          // 35-55% of total wealth
-      const target = Math.max(20, Math.floor(victimTotal * pct))
-      const fromWallet = Math.min(target, victim.gemas || 0)
-      const fromBank   = Math.min(target - fromWallet, victim.bank || 0)
-      const totalStolen = fromWallet + fromBank
-
-      const { getData, save } = require('../../database/db')
-      const db = getData()
-      db.users[targetJid].gemas = (victim.gemas || 0) - fromWallet
-      db.users[targetJid].bank  = (victim.bank  || 0) - fromBank
-      db.users[sender].gemas    = (robber.gemas || 0) + totalStolen
-      save()
-
-      setRevenge(targetJid, sender, from)
-      addXP(sender, 20); addPontos(sender, 8)
-      checkAndAward(sender, 'rob', null)
-      const updated = getUser(sender)
-      const story = successStories[Math.floor(Math.random() * successStories.length)]
-
-      await sock.sendMessage(from, {
-        text: [
-          `🥃 *Streeton activado — 100% garantido!*`,
-          ``, story,
-          `*${robber.name}* roubou *${gem(totalStolen)}* de ${mention(targetJid)}!`,
-          fromBank > 0 ? `  └ ${gem(fromWallet)} da carteira + ${gem(fromBank)} do banco` : `  └ ${gem(fromWallet)} da carteira`,
-          `💳 Saldo: ${gem(updated.gemas)}`,
-          ``,
-          `⚠️ ${mention(targetJid)}, podes vingar-te quando quiseres!`,
-        ].filter(Boolean).join('\n'),
-        mentions: [targetJid],
-      })
-      return
-    }
-
-    // ── BOND7: 55% success, wallet only ────────────────────────────────────
     useItem(sender, 'bond7')
+    setLastRob(sender)
 
     const levelAdv = ((robber.level || 1) - (victim.level || 1)) * 0.02
     const rate = Math.min(0.72, Math.max(0.35, SUCCESS_RATE + levelAdv))
@@ -190,52 +133,46 @@ module.exports = {
 
     if (success) {
       const stolen = Math.max(15, Math.floor(victim.gemas * (0.35 + Math.random() * 0.25)))
-      removeGemas(targetJid, stolen, `🍶 Embebedado e roubado por ${robber.name}`)
-      addGemas(sender, stolen, `🍶 Embebedou e roubou ${victim.name}`)
+      removeGemas(targetJid, stolen, `🍶 Roubado por ${robber.name}`)
+      addGemas(sender, stolen, `🍶 Embebedou ${victim.name}`)
       setRevenge(targetJid, sender, from)
       addXP(sender, 14); addPontos(sender, 5)
       checkAndAward(sender, 'rob', null)
       const updated = getUser(sender)
       const story = successStories[Math.floor(Math.random() * successStories.length)]
-
       await sock.sendMessage(from, {
         text: [
           `🍶 *Embebedamento bem-sucedido!*`,
           ``, story,
-          `*${robber.name}* roubou *${gem(stolen)}* de ${mention(targetJid)}! 💨`,
+          `*${robber.name}* roubou *${gem(stolen)}* de ${mention(targetJid)}!`,
           `💳 Saldo: ${gem(updated.gemas)}`,
-          ``,
-          `⚠️ ${mention(targetJid)}, podes vingar-te quando quiseres!`,
+          `⚠️ ${mention(targetJid)}, podes vingar-te!`,
         ].join('\n'),
         mentions: [targetJid],
       })
     } else {
       const fine = Math.max(8, Math.floor(robber.gemas * (0.15 + Math.random() * 0.10)))
-      removeGemas(sender, fine, `🚨 Multa por embebedamento falhado a ${victim.name}`)
-      addGemas(targetJid, fine, `🚨 Multa recebida de ${robber.name}`)
+      removeGemas(sender, fine, `🚨 Multa por falhar embebedar ${victim.name}`)
+      addGemas(targetJid, fine, `🚨 Multa de ${robber.name}`)
       setRevenge(targetJid, sender, from)
       addXP(sender, 3)
       const story = failStories[Math.floor(Math.random() * failStories.length)]
       const updated = getUser(sender)
-
       const failCount = (robber.stats?.robFails || 0) + 1
       updateUser(sender, { stats: { ...robber.stats, robFails: failCount } })
       let prisonText = ''
       if (failCount >= 3 && Math.random() < 0.4) {
-        const prisonMs = 15 * 60 * 1000
-        updateUser(sender, { prison_until: new Date(Date.now() + prisonMs).toISOString(), stats: { ...robber.stats, robFails: 0 } })
-        prisonText = `\n🔒 Detido! Preso por 15 minutos. (E o Bond7 foi desperdiçado)`
+        updateUser(sender, { prison_until: new Date(Date.now() + 15 * 60 * 1000).toISOString(), stats: { ...robber.stats, robFails: 0 } })
+        prisonText = `\n🔒 Detido! Preso por 15 minutos.`
       }
-
       await sock.sendMessage(from, {
         text: [
           `🚨 *Apanhado!* (Bond7 desperdiçado...)`,
           ``, story + '.',
-          `💸 Multa: *-${gem(fine)}* (pagos a ${mention(targetJid)})`,
+          `💸 Multa: *-${gem(fine)}*`,
           `💳 Saldo: ${gem(updated.gemas)}`,
           prisonText,
-          ``,
-          `⚠️ ${mention(targetJid)}, podes vingar-te quando quiseres!`,
+          `⚠️ ${mention(targetJid)}, podes vingar-te!`,
         ].filter(Boolean).join('\n'),
         mentions: [targetJid],
       })

@@ -25,22 +25,28 @@ module.exports = {
       : '  Sem conquistas ainda'
 
     const inv = user.inventory || {}
-    const picareta = inv.picareta || 0
-    const escudo   = inv.escudo   || 0
-    const invLines = [
-      `  🪓 *Picareta*`,
-      picareta > 0
-        ? `  ${durabilityBar(picareta, shop.picareta.durability)} usos`
-        : `  ❌ Sem stock — */loja comprar picareta*`,
-      ``,
-      `  🛡️ *Escudo*`,
-      escudo > 0
-        ? `  ${durabilityBar(escudo, shop.escudo.durability)} bloqueios`
-        : `  ❌ Sem stock — */loja comprar escudo*`,
-      ``,
-      `  🍶 *Bond7:*         ${inv.bond7 || 0} unidade(s)`,
-      `  💠 *VingançaGema:*  ${inv.vingancagema || 0} unidade(s)`,
-    ].join('\n')
+    const invLines = []
+    
+    // Mostrar todos os itens de forma organizada
+    const itemConfigs = {
+      picareta:        { emoji: '🪓', label: 'Picareta',        showBar: true },
+      escudo:          { emoji: '🛡️', label: 'Escudo',          showBar: true },
+      bond7:           { emoji: '🍶', label: 'Bond7',           showBar: false },
+      vingancagema:    { emoji: '💠', label: 'VingançaGema',    showBar: false },
+      seguro:          { emoji: '🔐', label: 'Seguro de Roubo', showBar: false },
+      streeton:        { emoji: '🥃', label: 'Streeton',        showBar: false },
+      vingancapremium: { emoji: '💜', label: 'VingançaPremium', showBar: false },
+    }
+    
+    Object.entries(itemConfigs).forEach(([key, config]) => {
+      const qty = inv[key] || 0
+      if (config.showBar && shop[key].durability) {
+        const bar = durabilityBar(qty, shop[key].durability)
+        invLines.push(`  ${config.emoji} *${config.label}:* ${bar}`)
+      } else {
+        invLines.push(`  ${config.emoji} *${config.label}:* ${qty} unidade(s)`)
+      }
+    })
 
     const relStatus = user.relationship_status || 'solteiro'
     const relEmoji = { solteiro: '💔', namorando: '💑', casado: '💍' }
@@ -70,7 +76,7 @@ module.exports = {
       `🔥 *Streak diário:* ${user.streak || 0} dia(s)`,
       ``,
       `🎒 *Inventário:*`,
-      invLines,
+      invLines.join('\n'),
       ``,
       `🏅 *Conquistas (${achs.length}):*`,
       achLines,

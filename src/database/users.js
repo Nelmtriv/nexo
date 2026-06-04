@@ -36,6 +36,7 @@ const DEFAULT_USER = () => ({
   relationship_status: 'solteiro',
   last_paquerar: null,
   inventory: { picareta: 0, bond7: 0, vingancagema: 0, escudo: 0, streeton: 0, vingancapremium: 0 },
+  is_admin: false,
   created_at: new Date().toISOString(),
 })
 

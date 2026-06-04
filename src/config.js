@@ -14,7 +14,7 @@ module.exports = {
     mineMax: 20,
   },
   games: {
-    quizReward: 10,
+    quizReward: 50,
     quizTimeoutMs: 30_000,
     pptBet: 5,
     forcaBase: 50,          // base reward, reduced by letters used

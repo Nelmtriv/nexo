@@ -1,8 +1,8 @@
 const { getUser, removeGemas, setRelationship, clearRelationship, setProposal, getProposal, clearProposal } = require('../../database/users')
 const { gem, mention } = require('../../utils/formatter')
 
-const WEDDING_COST = 100
-const DIVORCE_COST = 80
+const WEDDING_COST = 500
+const DIVORCE_COST = 2000
 const proposalTimers = {}
 
 module.exports = {

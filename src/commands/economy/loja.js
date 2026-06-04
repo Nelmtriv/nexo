@@ -27,7 +27,17 @@ const ITEMS = {
   seguro: {
     ...shop.seguro,
     id: 'seguro',
-    desc: `Imunidade total a roubos por 1 hora. Consome-se no primeiro ataque ou ao expirar.`,
+    desc: `Imunidade total a roubos por 6 horas. Expira ao fim do tempo.`,
+  },
+  streeton: {
+    ...shop.streeton,
+    id: 'streeton',
+    desc: `Para /embebedar. 100% sucesso — rouba da carteira e do banco da vítima. 1 uso.`,
+  },
+  vingancapremium: {
+    ...shop.vingancapremium,
+    id: 'vingancapremium',
+    desc: `Para /vingar. 100% sucesso, rouba carteira+banco, podes recuperar mais do que foi roubado. 3 usos.`,
   },
 }
 
@@ -53,6 +63,8 @@ module.exports = {
         `🍶 Bond7:          ${inv.bond7 || 0} unidade(s)`,
         `💠 VingançaGema:   ${inv.vingancagema || 0} unidade(s)`,
         `🔐 Seguro:         ${insActive ? `✅ activo (${formatRemaining(insRemaining)})` : '❌ inactivo'}`,
+        `🥃 Streeton:       ${inv.streeton || 0} unidade(s)`,
+        `💜 VingançaPremium: ${inv.vingancapremium || 0} uso(s)`,
       ]
       await sock.sendMessage(from, { text: lines.join('\n') }, { quoted: msg })
       return
@@ -65,7 +77,7 @@ module.exports = {
 
       if (!item) {
         await sock.sendMessage(from, {
-          text: `❓ Item inválido. Usa */loja* para ver os itens disponíveis.\nNomes: *picareta* | *bond7* | *vingancagema* | *escudo*`,
+          text: `❓ Item inválido. Usa */loja* para ver os itens disponíveis.\nNomes: *picareta* | *bond7* | *vincancagema* | *escudo* | *seguro* | *streeton* | *vingancapremium*`,
         }, { quoted: msg })
         return
       }
@@ -88,7 +100,7 @@ module.exports = {
           text: [
             `🔐 *Seguro de Roubo activado!*`,
             ``,
-            `Estás protegido durante *1 hora*!`,
+            `Estás protegido durante *1 horas*!`,
             `O seguro consome-se no primeiro ataque ou ao expirar.`,
             ``,
             `💸 Gasto: ${gem(item.price)}`,

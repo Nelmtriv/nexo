@@ -1,5 +1,5 @@
 const { getUser, updateUser, addGemas, removeGemas, addPontos, bankHeist } = require('../../database/users')
-const { checkDailyLimit, handleLimitExceeded } = require('../../utils/dailyLimit')
+const { checkDailyLimit, handleLimitExceeded, usageFooter } = require('../../utils/dailyLimit')
 const { checkCooldown, formatRemaining } = require('../../utils/cooldown')
 const { addXP } = require('../../utils/level')
 const { checkAndAward } = require('../../utils/achievements')
@@ -180,6 +180,7 @@ module.exports = {
       lines.push(`⭐ +${crime.xp} XP`, `💳 Saldo: ${gem(updated.gemas)}`)
       if (leveledUp) lines.push(``, `🎉 *NÍVEL UP!* Nível ${newLevel}!`)
       if (awarded.length) lines.push(``, `🏅 Conquista: *${awarded[0].name}*!`)
+      if (usageFooter(limitResult)) lines.push(``, usageFooter(limitResult))
 
       await sock.sendMessage(from, { text: lines.join('\n') }, { quoted: msg })
     } else {

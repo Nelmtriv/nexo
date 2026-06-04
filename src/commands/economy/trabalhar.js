@@ -1,5 +1,5 @@
 const { getUser, updateUser, addGemas } = require('../../database/users')
-const { checkDailyLimit, handleLimitExceeded } = require('../../utils/dailyLimit')
+const { checkDailyLimit, handleLimitExceeded, usageFooter } = require('../../utils/dailyLimit')
 const { addXP, getLevelTitle } = require('../../utils/level')
 const { checkAndAward } = require('../../utils/achievements')
 const { gem, header } = require('../../utils/formatter')
@@ -95,6 +95,7 @@ module.exports = {
       `⭐ +${job.xp} XP`,
       ``,
       `💳 Carteira: ${gem(updated.gemas)}`,
+      usageFooter(limitResult),
     ].filter(l => l !== '')
     if (leveledUp) lines.push(``, `🎉 *NÍVEL UP!* Agora és nível ${newLevel} — ${getLevelTitle(newLevel)}!`)
     if (awarded.length) lines.push(``, `🏅 Conquista: *${awarded[0].name}*! +${gem(awarded[0].reward)}`)

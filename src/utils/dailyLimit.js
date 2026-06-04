@@ -17,49 +17,60 @@ const LIMITS = {
   roleta:     10,
 }
 
+// These games block silently — no count shown, no message when limit is hit
+const SILENT_GAMES = new Set(['quiz', 'forca', 'blackjack', 'ppt'])
+
 function checkDailyLimit(sender, game) {
   const limit = LIMITS[game]
   const user = getUser(sender)
   const today = new Date().toDateString()
 
   const dailyGames = user.daily_games || {}
-  const gameData = dailyGames[game] || { count: 0, date: '', warned: false }
+  const gameData = dailyGames[game] || { count: 0, date: '' }
   const isNewDay = gameData.date !== today
   const count = isNewDay ? 0 : gameData.count
-  const warned = isNewDay ? false : (gameData.warned || false)
 
   if (count < limit) {
     updateUser(sender, {
-      daily_games: { ...dailyGames, [game]: { count: count + 1, date: today, warned } },
+      daily_games: { ...dailyGames, [game]: { count: count + 1, date: today } },
     })
-    return { allowed: true }
+    return {
+      allowed:   true,
+      used:      count + 1,
+      remaining: limit - count - 1,
+      limit,
+      silent:    SILENT_GAMES.has(game),
+    }
   }
 
-  if (!warned) {
-    const newWarnings = (user.warnings || 0) + 1
-    updateUser(sender, {
-      warnings: newWarnings,
-      daily_games: { ...dailyGames, [game]: { count, date: today, warned: true } },
-    })
-    return { allowed: false, newWarning: true, warnings: newWarnings }
+  return {
+    allowed:   false,
+    used:      count,
+    remaining: 0,
+    limit,
+    silent:    SILENT_GAMES.has(game),
   }
-
-  return { allowed: false, newWarning: false, warnings: user.warnings || 0 }
 }
 
 async function handleLimitExceeded(sock, from, msg, sender, userName, result) {
-  if (!result.newWarning) return
+  if (result.silent) return  // quiz/forca/bj/ppt — block silently
 
-  if (result.warnings >= 3) {
-    await sock.sendMessage(from, {
-      text: `🚫 *${userName}* acumulou *3 advertências* por excesso de jogo e foi expulso do grupo!`,
-    }, { quoted: msg })
-    await sock.groupParticipantsUpdate(from, [sender], 'remove').catch(() => {})
-  } else {
-    await sock.sendMessage(from, {
-      text: `⚠️ *Advertência ${result.warnings}/3* — *${userName}*, atingiste o limite diário para este jogo.`,
-    }, { quoted: msg })
-  }
+  const tomorrow = new Date()
+  tomorrow.setHours(24, 0, 0, 0)
+  const ms = tomorrow.getTime() - Date.now()
+  const h = Math.floor(ms / 3_600_000)
+  const m = Math.floor((ms % 3_600_000) / 60_000)
+
+  await sock.sendMessage(from, {
+    text: `⛔ *${userName}*, já usaste os *${result.limit}* usos diários para este jogo.\n⏳ Volta em *${h}h ${m}m* (meia-noite).`,
+  }, { quoted: msg })
 }
 
-module.exports = { checkDailyLimit, handleLimitExceeded, LIMITS }
+// Helper: returns a short "(X/Y hoje)" line for non-silent games
+function usageFooter(result) {
+  if (result.silent) return ''
+  if (result.remaining === 0) return `⚠️ Último uso de hoje! (${result.used}/${result.limit})`
+  return `📊 Usos hoje: ${result.used}/${result.limit} — restam *${result.remaining}*`
+}
+
+module.exports = { checkDailyLimit, handleLimitExceeded, usageFooter, LIMITS }

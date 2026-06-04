@@ -3,7 +3,7 @@ const { getData, save } = require('../../database/db')
 const { gem } = require('../../utils/formatter')
 const { formatRemaining } = require('../../utils/cooldown')
 
-const BRIBE_COST = 800
+const BRIBE_COST = 200
 
 module.exports = {
   name: ['suborno', 'subornar', 'bribe', 'corromprer', 'suborn'],

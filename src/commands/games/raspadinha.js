@@ -1,7 +1,7 @@
 const { getUser, addGemas, removeGemas, addPontos } = require('../../database/users')
 const { addXP } = require('../../utils/level')
 const { gem } = require('../../utils/formatter')
-const { checkDailyLimit, handleLimitExceeded } = require('../../utils/dailyLimit')
+const { checkDailyLimit, handleLimitExceeded, usageFooter } = require('../../utils/dailyLimit')
 
 const TICKET_PRICE = 35
 const SYMBOLS = ['🍒', '🍋', '🍊', '⭐', '💎', '7️⃣']
@@ -73,6 +73,7 @@ module.exports = {
           ? `💎 Prémio: *+${gem(prize)}* (lucro: ${net >= 0 ? '+' : ''}${gem(net)})`
           : `💸 Perdeste ${gem(TICKET_PRICE)}`,
         `💳 Saldo: ${gem(updated.gemas)}`,
+        usageFooter(limitResult),
       ].join('\n'),
     }, { quoted: msg })
   },

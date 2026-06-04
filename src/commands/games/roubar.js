@@ -75,19 +75,21 @@ module.exports = {
     if (victimFresh.insurance_until && new Date(victimFresh.insurance_until) > new Date()) {
       const { getData, save } = require('../../database/db')
       const db = getData()
-      db.users[targetJid].insurance_until = null
-      db.users[sender].gemas = Math.max(0, (db.users[sender].gemas || 0) - Math.floor(robber.gemas * 0.15))
+      const penalty = Math.floor(robber.gemas * 0.15)
+      db.users[sender].gemas = Math.max(0, (db.users[sender].gemas || 0) - penalty)
       save()
       setLastRob(sender)
       setRevenge(targetJid, sender, from)
       const updR = getUser(sender)
+      const insLeft = formatRemaining(new Date(victimFresh.insurance_until).getTime() - Date.now())
       await sock.sendMessage(from, {
         text: [
-          `🔐 *Seguro activado!*`,
+          `🔐 *Seguro activo!*`,
           ``,
-          `*${robber.name}* tentou roubar ${mention(targetJid)}, mas o seguro bloqueou e activou um contra-ataque!`,
-          `💸 Penalização: *-${gem(Math.floor(robber.gemas * 0.15))}*`,
+          `*${robber.name}* tentou roubar ${mention(targetJid)}, mas o seguro bloqueou o ataque!`,
+          `💸 Penalização: *-${gem(penalty)}*`,
           `💳 Saldo: ${gem(updR.gemas)}`,
+          `⏳ Seguro de ${mention(targetJid)} activo por mais *${insLeft}*`,
           ``,
           `⚠️ ${mention(targetJid)}, podes vingar-te quando quiseres!`,
         ].join('\n'),

@@ -55,13 +55,16 @@ module.exports = {
       await sock.sendMessage(from, { text: `🔒 Estás na prisão!` }, { quoted: msg }); return
     }
 
-    // require Bond7
-    if (!hasItem(sender, 'bond7')) {
+    // require Bond7 or Streeton
+    const useStreeton = hasItem(sender, 'streeton')
+    const useBond7   = !useStreeton && hasItem(sender, 'bond7')
+    if (!useStreeton && !useBond7) {
       await sock.sendMessage(from, {
         text: [
-          `🍶 Precisas de *Bond7* para embebedar!`,
-          `Compra na loja: */loja comprar bond7*`,
-          `Preço: ${gem(shop.bond7.price)}`,
+          `Precisas de um item para embebedar:`,
+          `🍶 *Bond7* (${gem(shop.bond7.price)}) — 55% sucesso, carteira`,
+          `🥃 *Streeton* (${gem(shop.streeton.price)}) — 100% sucesso, carteira + banco`,
+          `Compra com: */loja comprar bond7* ou */loja comprar streeton*`,
         ].join('\n'),
       }, { quoted: msg }); return
     }
@@ -86,7 +89,6 @@ module.exports = {
     if (victimFresh.insurance_until && new Date(victimFresh.insurance_until) > new Date()) {
       const { getData, save } = require('../../database/db')
       const db = getData()
-      db.users[targetJid].insurance_until = null
       const penalty = Math.floor(robber.gemas * 0.20)
       db.users[sender].gemas = Math.max(0, (db.users[sender].gemas || 0) - penalty)
       save()
@@ -94,13 +96,15 @@ module.exports = {
       setLastRob(sender)
       setRevenge(targetJid, sender, from)
       const updR = getUser(sender)
+      const insLeft = formatRemaining(new Date(victimFresh.insurance_until).getTime() - Date.now())
       await sock.sendMessage(from, {
         text: [
-          `🔐 *Seguro activado!*`,
+          `🔐 *Seguro activo!*`,
           ``,
           `*${robber.name}* tentou embebedar ${mention(targetJid)}, mas o seguro neutralizou tudo!`,
           `🍶 Bond7 desperdiçado + 💸 Penalização: *-${gem(penalty)}*`,
           `💳 Saldo: ${gem(updR.gemas)}`,
+          `⏳ Seguro de ${mention(targetJid)} activo por mais *${insLeft}*`,
           ``,
           `⚠️ ${mention(targetJid)}, podes vingar-te quando quiseres!`,
         ].join('\n'),
@@ -137,9 +141,48 @@ module.exports = {
       return
     }
 
-    // consume Bond7
-    useItem(sender, 'bond7')
     setLastRob(sender)
+
+    // ── STREETON: 100% success, steals from wallet + bank ──────────────────
+    if (useStreeton) {
+      useItem(sender, 'streeton')
+      const victimTotal = (victim.gemas || 0) + (victim.bank || 0)
+      const pct = 0.35 + Math.random() * 0.20          // 35-55% of total wealth
+      const target = Math.max(20, Math.floor(victimTotal * pct))
+      const fromWallet = Math.min(target, victim.gemas || 0)
+      const fromBank   = Math.min(target - fromWallet, victim.bank || 0)
+      const totalStolen = fromWallet + fromBank
+
+      const { getData, save } = require('../../database/db')
+      const db = getData()
+      db.users[targetJid].gemas = (victim.gemas || 0) - fromWallet
+      db.users[targetJid].bank  = (victim.bank  || 0) - fromBank
+      db.users[sender].gemas    = (robber.gemas || 0) + totalStolen
+      save()
+
+      setRevenge(targetJid, sender, from)
+      addXP(sender, 20); addPontos(sender, 8)
+      checkAndAward(sender, 'rob', null)
+      const updated = getUser(sender)
+      const story = successStories[Math.floor(Math.random() * successStories.length)]
+
+      await sock.sendMessage(from, {
+        text: [
+          `🥃 *Streeton activado — 100% garantido!*`,
+          ``, story,
+          `*${robber.name}* roubou *${gem(totalStolen)}* de ${mention(targetJid)}!`,
+          fromBank > 0 ? `  └ ${gem(fromWallet)} da carteira + ${gem(fromBank)} do banco` : `  └ ${gem(fromWallet)} da carteira`,
+          `💳 Saldo: ${gem(updated.gemas)}`,
+          ``,
+          `⚠️ ${mention(targetJid)}, podes vingar-te quando quiseres!`,
+        ].filter(Boolean).join('\n'),
+        mentions: [targetJid],
+      })
+      return
+    }
+
+    // ── BOND7: 55% success, wallet only ────────────────────────────────────
+    useItem(sender, 'bond7')
 
     const levelAdv = ((robber.level || 1) - (victim.level || 1)) * 0.02
     const rate = Math.min(0.72, Math.max(0.35, SUCCESS_RATE + levelAdv))

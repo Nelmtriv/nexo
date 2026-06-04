@@ -1,6 +1,6 @@
 const { getUser, addGemas, updateUser, hasItem, useItem, addPontos } = require('../../database/users')
 const { gem } = require('../../utils/formatter')
-const { checkDailyLimit, handleLimitExceeded } = require('../../utils/dailyLimit')
+const { checkDailyLimit, handleLimitExceeded, usageFooter } = require('../../utils/dailyLimit')
 const { addXP } = require('../../utils/level')
 const { checkAndAward } = require('../../utils/achievements')
 const { economy } = require('../../config')
@@ -63,6 +63,7 @@ module.exports = {
       durabilityLeft > 0
         ? `🪓 Picareta: *${durabilityLeft} uso(s)* restantes`
         : `💔 A tua picareta *partiu*! Compra uma nova na */loja*`,
+      usageFooter(limitResult),
     ].filter(l => l !== '')
     if (leveledUp) lines.push(``, `🎉 NÍVEL UP! → ${newLevel}`)
     if (awarded.length) lines.push(``, `🏅 Conquista: *${awarded[0].name}*!`)

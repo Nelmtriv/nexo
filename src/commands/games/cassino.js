@@ -1,6 +1,6 @@
 const { getUser, updateUser, addGemas, removeGemas, addWin, addLoss, addPontos } = require('../../database/users')
 const { gem } = require('../../utils/formatter')
-const { checkDailyLimit, handleLimitExceeded } = require('../../utils/dailyLimit')
+const { checkDailyLimit, handleLimitExceeded, usageFooter } = require('../../utils/dailyLimit')
 const symbols = ['🍒', '🍋', '🍊', '🍇', '⭐', '💎', '7️⃣']
 
 function spin() {
@@ -63,7 +63,8 @@ module.exports = {
         ``,
         `😢 Sem sorte! Perdes ${gem(bet)}.`,
         `💰 Saldo: ${gem(updated.gemas)}`,
-      ].join('\n')
+        usageFooter(limitResult),
+      ].filter(Boolean).join('\n')
     } else {
       const isJackpot = reels[0] === reels[1] && reels[1] === reels[2]
       const gain = Math.floor(bet * multiplier)
@@ -82,7 +83,8 @@ module.exports = {
         `💎 Ganhas ${gem(gain)} (lucro: +${gem(profit)})`,
         `🏅 +${pts} pts`,
         `💰 Saldo: ${gem(updated.gemas)}`,
-      ].join('\n')
+        usageFooter(limitResult),
+      ].filter(Boolean).join('\n')
     }
 
     await sock.sendMessage(from, { text }, { quoted: msg })

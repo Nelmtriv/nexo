@@ -74,14 +74,14 @@ async function handleMessage(sock, msg) {
     })
   }
 
-  // wealth tax every 3 days: 10% of (gemas + bank) if total > 3000
+  // wealth tax every 7 days: 3% of (gemas + bank) if total > 3000
   const TAX_THRESHOLD = 3000
-  const TAX_COOLDOWN_MS = 3 * 24 * 60 * 60 * 1000
+  const TAX_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000
   const freshUser = getUser(sender)
   const totalWealth = (freshUser.gemas || 0) + (freshUser.bank || 0)
   const lastTax = freshUser.last_tax_date ? new Date(freshUser.last_tax_date).getTime() : 0
   if (totalWealth > TAX_THRESHOLD && Date.now() - lastTax >= TAX_COOLDOWN_MS) {
-    const taxAmount = Math.floor(totalWealth * 0.10)
+    const taxAmount = Math.floor(totalWealth * 0.03)
     // deduct from gemas first, remainder from bank
     const fromGemas = Math.min(taxAmount, freshUser.gemas || 0)
     const fromBank  = taxAmount - fromGemas
@@ -94,7 +94,7 @@ async function handleMessage(sock, msg) {
     const afterTax = getUser(sender)
     await sock.sendMessage(from, {
       text: [
-        `🏛️ *${freshUser.name}*, o governo cobrou *${gem(taxAmount)}* de imposto de riqueza!`,
+        `🏛️ *${freshUser.name}*, o governo cobrou *${gem(taxAmount)}* de imposto de riqueza (3% semanal)!`,
         `📊 Base: ${gem(freshUser.gemas)} (carteira) + ${gem(freshUser.bank || 0)} (banco) = ${gem(totalWealth)}`,
         `💸 Imposto: 10% = *${gem(taxAmount)}*`,
         fromBank > 0 ? `   └ ${gem(fromGemas)} da carteira + ${gem(fromBank)} do banco` : `   └ ${gem(fromGemas)} da carteira`,

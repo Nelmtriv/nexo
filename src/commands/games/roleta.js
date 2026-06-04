@@ -1,7 +1,7 @@
 const { getUser, addGemas, removeGemas, addWin, addLoss, addPontos } = require('../../database/users')
 const { addXP } = require('../../utils/level')
 const { gem } = require('../../utils/formatter')
-const { checkDailyLimit, handleLimitExceeded } = require('../../utils/dailyLimit')
+const { checkDailyLimit, handleLimitExceeded, usageFooter } = require('../../utils/dailyLimit')
 
 const RED   = new Set([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36])
 const BLACK = new Set([2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35])
@@ -112,6 +112,7 @@ module.exports = {
           ? `🎉 *Ganhaste!* ×${multiplier} → *+${gem(bet * multiplier - bet)}* de lucro`
           : `😢 Perdeste! (apostaste em ${choiceLabel})`,
         `💳 Saldo: ${gem(updated.gemas)}`,
+        usageFooter(limitResult),
       ].join('\n'),
     }, { quoted: msg })
   },

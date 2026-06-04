@@ -1,4 +1,5 @@
 const { getUser, addGemas, removeGemas, addWin, addLoss, addPontos, getActiveGame, saveActiveGame, deleteActiveGame } = require('../../database/users')
+const { checkDailyLimit, handleLimitExceeded } = require('../../utils/dailyLimit')
 const { addXP } = require('../../utils/level')
 const { gem, mention } = require('../../utils/formatter')
 const { games } = require('../../config')
@@ -103,6 +104,12 @@ module.exports = {
 
     const targetJid = mentioned[0]
     if (targetJid === sender) { await sock.sendMessage(from, { text: '😂 Não podes jogar contra ti mesmo.' }, { quoted: msg }); return }
+
+    const limitResult = checkDailyLimit(sender, 'ppt')
+    if (!limitResult.allowed) {
+      await handleLimitExceeded(sock, from, msg, sender, user.name, limitResult)
+      return
+    }
 
     const bet = betArg ? parseInt(betArg) : games.pptBet
     if (user.gemas < bet) { await sock.sendMessage(from, { text: `❌ Precisas de ${gem(bet)} para apostar.` }, { quoted: msg }); return }

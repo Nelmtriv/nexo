@@ -1,5 +1,5 @@
 const { getUser, updateUser, addGemas } = require('../../database/users')
-const { checkCooldown, formatRemaining } = require('../../utils/cooldown')
+const { checkDailyLimit, handleLimitExceeded } = require('../../utils/dailyLimit')
 const { addXP, getLevelTitle } = require('../../utils/level')
 const { checkAndAward } = require('../../utils/achievements')
 const { gem, header } = require('../../utils/formatter')
@@ -68,16 +68,9 @@ module.exports = {
     }
 
     // work
-    const MAX_WORK = 5
-    const today = new Date().toDateString()
-    const isNewDay = user.work_today_date !== today
-    const workCount = isNewDay ? 0 : (user.work_today_count || 0)
-
-    if (workCount >= MAX_WORK) {
-      const tomorrow = new Date(); tomorrow.setHours(24, 0, 0, 0)
-      await sock.sendMessage(from, {
-        text: `😓 *${user.name}*, já trabalhaste *5 vezes hoje*! Estás esgotado.\n⏳ Volta em *${formatRemaining(tomorrow - Date.now())}* (meia-noite).`,
-      }, { quoted: msg })
+    const limitResult = checkDailyLimit(sender, 'trabalhar')
+    if (!limitResult.allowed) {
+      await handleLimitExceeded(sock, from, msg, sender, user.name, limitResult)
       return
     }
 
@@ -86,10 +79,6 @@ module.exports = {
 
     const earned = Math.floor(Math.random() * (job.pay[1] - job.pay[0] + 1)) + job.pay[0]
     addGemas(sender, earned)
-    updateUser(sender, {
-      work_today_count: workCount + 1,
-      work_today_date: today,
-    })
 
     const { leveledUp, newLevel } = addXP(sender, job.xp)
     const awarded = checkAndAward(sender, 'work', null)
@@ -98,16 +87,14 @@ module.exports = {
     const scenario = scenarios[Math.floor(Math.random() * scenarios.length)]
     const updated = getUser(sender)
 
-    const turnosHoje = workCount + 1
     const lines = [
-      `${job.name} (${turnosHoje}/${MAX_WORK} turnos hoje)`,
+      `${job.name}`,
       ``,
       `📋 ${scenario}.`,
       `💰 Recebeste *+${gem(earned)}*`,
       `⭐ +${job.xp} XP`,
       ``,
       `💳 Carteira: ${gem(updated.gemas)}`,
-      turnosHoje >= MAX_WORK ? `⚠️ Último turno do dia! Volta amanhã.` : ``,
     ].filter(l => l !== '')
     if (leveledUp) lines.push(``, `🎉 *NÍVEL UP!* Agora és nível ${newLevel} — ${getLevelTitle(newLevel)}!`)
     if (awarded.length) lines.push(``, `🏅 Conquista: *${awarded[0].name}*! +${gem(awarded[0].reward)}`)

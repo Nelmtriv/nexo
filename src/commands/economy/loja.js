@@ -1,4 +1,5 @@
 const { getUser, removeGemas, addItem, getInventory } = require('../../database/users')
+const { getData, save } = require('../../database/db')
 const { gem, header, line } = require('../../utils/formatter')
 const { shop } = require('../../config')
 
@@ -21,7 +22,12 @@ const ITEMS = {
   escudo: {
     ...shop.escudo,
     id: 'escudo',
-    desc: `Protege-te de roubos e embebedamentos. Apenas ${shop.escudo.durability} bloqueios antes de partir.`,
+    desc: `Protege-te de ${shop.escudo.durability} roubos/embebedamentos antes de partir.`,
+  },
+  seguro: {
+    ...shop.seguro,
+    id: 'seguro',
+    desc: `Imunidade total a roubos por 1 hora. Consome-se no primeiro ataque ou ao expirar.`,
   },
 }
 
@@ -36,6 +42,9 @@ module.exports = {
     // /loja inventario
     if (sub === 'inventario' || sub === 'inv' || sub === 'i') {
       const inv = getInventory(sender)
+      const insActive = user.insurance_until && new Date(user.insurance_until) > new Date()
+      const insRemaining = insActive ? new Date(user.insurance_until).getTime() - Date.now() : 0
+      const { formatRemaining } = require('../../utils/cooldown')
       const lines = [
         header('🎒 Inventário — ' + user.name),
         ``,
@@ -43,6 +52,7 @@ module.exports = {
         `🛡️ Escudo:         ${inv.escudo || 0} bloqueio(s) restantes`,
         `🍶 Bond7:          ${inv.bond7 || 0} unidade(s)`,
         `💠 VingançaGema:   ${inv.vingancagema || 0} unidade(s)`,
+        `🔐 Seguro:         ${insActive ? `✅ activo (${formatRemaining(insRemaining)})` : '❌ inactivo'}`,
       ]
       await sock.sendMessage(from, { text: lines.join('\n') }, { quoted: msg })
       return
@@ -63,6 +73,27 @@ module.exports = {
       if (user.gemas < item.price) {
         await sock.sendMessage(from, {
           text: `❌ Precisas de ${gem(item.price)} para comprar *${item.name}*.\nTens apenas ${gem(user.gemas)}.`,
+        }, { quoted: msg })
+        return
+      }
+
+      // seguro is time-based, not inventory-based
+      if (item.id === 'seguro') {
+        const db = getData()
+        db.users[sender].gemas = (db.users[sender].gemas || 0) - item.price
+        db.users[sender].insurance_until = new Date(Date.now() + item.hours * 60 * 60 * 1000).toISOString()
+        save()
+        const updated = getUser(sender)
+        await sock.sendMessage(from, {
+          text: [
+            `🔐 *Seguro de Roubo activado!*`,
+            ``,
+            `Estás protegido durante *1 hora*!`,
+            `O seguro consome-se no primeiro ataque ou ao expirar.`,
+            ``,
+            `💸 Gasto: ${gem(item.price)}`,
+            `💳 Saldo: ${gem(updated.gemas)}`,
+          ].join('\n'),
         }, { quoted: msg })
         return
       }

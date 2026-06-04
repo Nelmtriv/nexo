@@ -3,18 +3,18 @@
     "227393251893295@lid": {
       "jid": "227393251893295@lid",
       "name": "Johane Mahumane",
-      "gemas": 210,
+      "gemas": 0,
       "wins": 0,
       "losses": 1,
       "games": 1,
-      "last_daily": "2026-06-02T07:39:35.474Z",
+      "last_daily": "2026-06-03T16:40:46.085Z",
       "last_mine": null,
       "created_at": "2026-06-02T06:50:01.784Z",
       "bank": 0,
-      "xp": 55,
+      "xp": 65,
       "level": 1,
       "pontos": 6,
-      "streak": 1,
+      "streak": 2,
       "job": "desempregado",
       "mine_today_count": 0,
       "mine_today_date": null,
@@ -26,7 +26,8 @@
       "achievements": {},
       "stats": {
         "robs": 2,
-        "works": 5
+        "works": 7,
+        "bankDeposited": 400
       },
       "inventory": {
         "picareta": 0,
@@ -43,147 +44,605 @@
       "last_paquerar": "2026-06-02T08:44:52.255Z",
       "historico": [
         {
+          "amount": -69,
+          "reason": "🔧 Admin retirou gemas de Johane Mahumane",
+          "balance": 0,
+          "ts": "2026-06-03T19:56:51.210Z"
+        },
+        {
+          "amount": -500,
+          "reason": "🔧 Admin retirou gemas de Johane Mahumane",
+          "balance": 469,
+          "ts": "2026-06-03T19:39:12.093Z"
+        },
+        {
+          "amount": 15,
+          "reason": "🎁 Bónus diário automático",
+          "balance": 15,
+          "ts": "2026-06-03T16:40:46.084Z"
+        },
+        {
+          "amount": -100,
+          "reason": "🔧 Admin retirou gemas de Johane Mahumane",
+          "balance": 0,
+          "ts": "2026-06-03T08:58:00.118Z"
+        },
+        {
+          "amount": -86,
+          "reason": "🔧 Admin retirou gemas de Johane Mahumane",
+          "balance": 100,
+          "ts": "2026-06-03T08:57:30.487Z"
+        },
+        {
+          "amount": -24,
+          "reason": "🔧 Admin retirou gemas de Johane Mahumane",
+          "balance": 186,
+          "ts": "2026-06-03T07:32:50.924Z"
+        },
+        {
           "amount": 8,
           "reason": "🚨 Multa recebida de bullet train",
           "balance": 99,
           "ts": "2026-06-02T09:00:14.664Z"
         }
-      ]
+      ],
+      "daily_games": {
+        "trabalhar": {
+          "count": 2,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        }
+      },
+      "last_tax_date": null
     },
     "129120021307427@lid": {
       "jid": "129120021307427@lid",
       "name": "Nelmtriv",
-      "gemas": 409,
-      "wins": 15,
-      "losses": 7,
-      "games": 22,
-      "last_daily": "2026-06-02T06:52:35.818Z",
+      "gemas": 0,
+      "wins": 68,
+      "losses": 38,
+      "games": 106,
+      "last_daily": "2026-06-03T07:13:59.064Z",
       "last_mine": "2026-06-02T08:58:49.914Z",
       "created_at": "2026-06-02T06:50:27.415Z",
-      "bank": 0,
-      "xp": 155,
-      "level": 2,
-      "pontos": 183,
-      "streak": 0,
-      "job": "desempregado",
-      "mine_today_count": 1,
-      "mine_today_date": "Tue Jun 02 2026",
-      "last_rob": "2026-06-02T09:09:37.185Z",
+      "bank": 2096,
+      "xp": 81,
+      "level": 5,
+      "pontos": 992,
+      "streak": 1,
+      "job": "minerador",
+      "mine_today_count": 2,
+      "mine_today_date": "Wed Jun 03 2026",
+      "last_rob": "2026-06-03T17:33:55.157Z",
       "last_work": "2026-06-02T08:10:09.488Z",
-      "last_crime": "2026-06-02T08:07:09.861Z",
-      "last_bank_interest": null,
-      "prison_until": null,
+      "last_crime": "2026-06-03T19:49:59.333Z",
+      "last_bank_interest": "2026-06-03T07:33:32.755Z",
+      "prison_until": "2026-06-03T21:32:42.741Z",
       "achievements": {
-        "primeiraVitoria": "2026-06-02T07:54:01.779Z"
+        "primeiraVitoria": "2026-06-02T07:54:01.779Z",
+        "rico": "2026-06-02T12:15:22.495Z",
+        "banqueiro": "2026-06-02T18:53:19.996Z",
+        "empregado": "2026-06-03T19:33:44.155Z"
       },
       "stats": {
-        "works": 4,
-        "wins": 10,
-        "robFails": 2,
-        "bankDeposited": 200,
-        "robs": 1,
-        "mines": 1
+        "works": 12,
+        "wins": 49,
+        "robFails": 0,
+        "bankDeposited": 3814,
+        "robs": 3,
+        "mines": 4
       },
       "inventory": {
-        "picareta": 19,
-        "bond7": 1,
+        "picareta": 16,
+        "bond7": 0,
         "vingancagema": 0,
-        "escudo": 2
+        "escudo": 3
       },
-      "work_today_count": 4,
-      "work_today_date": "Tue Jun 02 2026",
+      "work_today_count": 2,
+      "work_today_date": "Wed Jun 03 2026",
       "cassino_today_count": 1,
-      "cassino_today_date": "Tue Jun 02 2026",
+      "cassino_today_date": "Wed Jun 03 2026",
       "warnings": 0,
       "partner": null,
       "relationship_status": "solteiro",
       "last_paquerar": null,
       "historico": [
         {
+          "amount": 48,
+          "reason": "🔧 Transferência forçada de bullet train",
+          "balance": 148,
+          "ts": "2026-06-03T19:55:54.403Z"
+        },
+        {
+          "amount": 100,
+          "reason": "🔧 Transferência forçada de Odmila",
+          "balance": 100,
+          "ts": "2026-06-03T19:53:47.580Z"
+        },
+        {
+          "amount": 300,
+          "reason": "🔧 Transferência forçada de Alberto Jó 愛",
+          "balance": 300,
+          "ts": "2026-06-03T19:51:45.751Z"
+        },
+        {
+          "amount": -47,
+          "reason": "🚨 🏦 Roubo a Banco — multado",
+          "balance": 0,
+          "ts": "2026-06-03T19:49:59.334Z"
+        },
+        {
+          "amount": -500,
+          "reason": "🔧 Admin retirou gemas de Nelmtriv",
+          "balance": 27,
+          "ts": "2026-06-03T19:39:19.658Z"
+        },
+        {
+          "amount": 500,
+          "reason": "🔧 Transferência forçada de Johane Mahumane",
+          "balance": 527,
+          "ts": "2026-06-03T19:39:12.094Z"
+        },
+        {
+          "amount": 0,
+          "reason": "🚨 🏦 Roubo a Banco — multado",
+          "balance": 0,
+          "ts": "2026-06-03T18:45:39.706Z"
+        },
+        {
+          "amount": 0,
+          "reason": "🔧 Transferência forçada de Carlos Jr",
+          "balance": 0,
+          "ts": "2026-06-03T18:45:25.979Z"
+        },
+        {
+          "amount": -74,
+          "reason": "🔧 Admin retirou gemas de Nelmtriv",
+          "balance": 0,
+          "ts": "2026-06-03T18:44:58.563Z"
+        },
+        {
           "amount": -20,
-          "reason": "🚨 Multa por roubo falhado a Odmila",
-          "balance": 114,
-          "ts": "2026-06-02T09:09:37.187Z"
+          "reason": "🔧 Admin retirou gemas de Nelmtriv",
+          "balance": 0,
+          "ts": "2026-06-03T18:34:54.833Z"
+        },
+        {
+          "amount": 85,
+          "reason": "🔧 Transferência forçada de Carlos Jr",
+          "balance": 85,
+          "ts": "2026-06-03T17:54:43.096Z"
+        },
+        {
+          "amount": 0,
+          "reason": "🚨 💳 Fraude Bancária — multado",
+          "balance": 0,
+          "ts": "2026-06-03T17:51:23.679Z"
+        },
+        {
+          "amount": -390,
+          "reason": "🍶 Embebedado e roubado por Carlos Jr",
+          "balance": 362,
+          "ts": "2026-06-03T17:29:31.762Z"
+        },
+        {
+          "amount": -13,
+          "reason": "🚨 🔫 Assalto — multado",
+          "balance": 0,
+          "ts": "2026-06-03T08:57:34.872Z"
+        },
+        {
+          "amount": 25,
+          "reason": "🛡️ Compensação: Carlos Jr tentou roubar-te",
+          "balance": 260,
+          "ts": "2026-06-03T08:50:43.784Z"
+        },
+        {
+          "amount": -35,
+          "reason": "🛡️ Penalizado por tentar roubar Alberto Jó 愛 (escudo)",
+          "balance": 167,
+          "ts": "2026-06-03T08:48:01.707Z"
+        },
+        {
+          "amount": -36,
+          "reason": "🚨 🏦 Roubo a Banco — multado",
+          "balance": 0,
+          "ts": "2026-06-03T08:13:15.199Z"
+        },
+        {
+          "amount": 11,
+          "reason": "🦹 Roubou bullet train",
+          "balance": 406,
+          "ts": "2026-06-03T08:08:52.276Z"
+        },
+        {
+          "amount": -87,
+          "reason": "🚨 🔫 Assalto — multado",
+          "balance": 275,
+          "ts": "2026-06-03T07:23:58.125Z"
+        },
+        {
+          "amount": 15,
+          "reason": "🎁 Bónus diário automático",
+          "balance": 362,
+          "ts": "2026-06-03T07:13:59.063Z"
         }
-      ]
+      ],
+      "daily_games": {
+        "forca": {
+          "count": 9,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        },
+        "crime": {
+          "count": 2,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        },
+        "quiz": {
+          "count": 2,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        },
+        "trabalhar": {
+          "count": 5,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        },
+        "blackjack": {
+          "count": 1,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        }
+      },
+      "last_tax_date": null,
+      "titulo": null,
+      "insurance_until": null,
+      "loan": {
+        "active": false,
+        "amount": 0,
+        "total": 0,
+        "due": null
+      }
     },
     "261494973427951@lid": {
       "jid": "261494973427951@lid",
-      "name": "Carlos Jr",
-      "gemas": 115,
-      "wins": 0,
-      "losses": 0,
-      "games": 0,
-      "last_daily": "2026-06-02T07:24:54.055Z",
+      "name": "261494973427951",
+      "gemas": 465,
+      "wins": 78,
+      "losses": 19,
+      "games": 97,
+      "last_daily": "2026-06-03T07:25:39.001Z",
       "last_mine": null,
       "created_at": "2026-06-02T06:50:31.146Z",
-      "bank": 0,
-      "xp": 0,
-      "level": 1,
-      "pontos": 0,
-      "streak": 1,
-      "job": "desempregado",
-      "mine_today_count": 0,
-      "mine_today_date": null,
-      "last_rob": null,
+      "bank": 5932,
+      "xp": 298,
+      "level": 5,
+      "pontos": 1270,
+      "streak": 2,
+      "job": "ajudante",
+      "mine_today_count": 3,
+      "mine_today_date": "Wed Jun 03 2026",
+      "last_rob": "2026-06-03T17:58:32.964Z",
       "last_work": null,
-      "last_crime": null,
-      "last_bank_interest": null,
-      "prison_until": null,
-      "achievements": {},
-      "stats": {},
+      "last_crime": "2026-06-03T20:17:41.216Z",
+      "last_bank_interest": "2026-06-03T08:19:58.622Z",
+      "prison_until": "2026-06-03T20:35:40.262Z",
+      "achievements": {
+        "primeiraVitoria": "2026-06-03T07:38:51.826Z",
+        "banqueiro": "2026-06-03T07:50:42.136Z",
+        "vingador": "2026-06-03T07:57:48.798Z",
+        "rico": "2026-06-03T17:49:09.099Z",
+        "milionario": "2026-06-03T17:49:09.100Z",
+        "empregado": "2026-06-03T20:16:01.341Z",
+        "apostador": "2026-06-03T20:29:51.889Z"
+      },
+      "stats": {
+        "mines": 3,
+        "works": 10,
+        "wins": 63,
+        "bankDeposited": 9550,
+        "robs": 2,
+        "crimes": 3,
+        "robFails": 1
+      },
       "inventory": {
-        "picareta": 0,
-        "bond7": 0,
-        "vingancagema": 0
+        "picareta": 17,
+        "bond7": 3,
+        "vingancagema": 0,
+        "escudo": 3
+      },
+      "work_today_count": 5,
+      "work_today_date": "Wed Jun 03 2026",
+      "cassino_today_count": 0,
+      "cassino_today_date": null,
+      "warnings": 1,
+      "partner": null,
+      "relationship_status": "solteiro",
+      "last_paquerar": null,
+      "historico": [
+        {
+          "amount": -78,
+          "reason": "🚨 🔫 Assalto — multado",
+          "balance": 0,
+          "ts": "2026-06-03T20:17:41.219Z"
+        },
+        {
+          "amount": 15,
+          "reason": "🛡️ Compensação: bullet train tentou embebedar-te",
+          "balance": 75,
+          "ts": "2026-06-03T20:13:33.700Z"
+        },
+        {
+          "amount": -48,
+          "reason": "🔧 Admin retirou gemas de Carlos Jr",
+          "balance": 0,
+          "ts": "2026-06-03T19:55:41.138Z"
+        },
+        {
+          "amount": 48,
+          "reason": "🔧 Transferência forçada de bullet train",
+          "balance": 48,
+          "ts": "2026-06-03T19:54:00.796Z"
+        },
+        {
+          "amount": 0,
+          "reason": "🔧 Admin retirou gemas de Carlos Jr",
+          "balance": 0,
+          "ts": "2026-06-03T19:49:37.169Z"
+        },
+        {
+          "amount": -13,
+          "reason": "🔧 Admin retirou gemas de Carlos Jr",
+          "balance": 0,
+          "ts": "2026-06-03T19:49:20.572Z"
+        },
+        {
+          "amount": 400,
+          "reason": "🔧 Transferência forçada de Odmila",
+          "balance": 513,
+          "ts": "2026-06-03T19:48:55.984Z"
+        },
+        {
+          "amount": 500,
+          "reason": "🔧 Transferência forçada de Nelmtriv",
+          "balance": 566,
+          "ts": "2026-06-03T19:39:19.664Z"
+        },
+        {
+          "amount": 500,
+          "reason": "🔧 Transferência forçada de Alberto Jó 愛",
+          "balance": 554,
+          "ts": "2026-06-03T18:57:45.444Z"
+        },
+        {
+          "amount": 10,
+          "reason": "🛡️ Compensação: bullet train tentou roubar-te",
+          "balance": 54,
+          "ts": "2026-06-03T18:56:14.970Z"
+        },
+        {
+          "amount": 194,
+          "reason": "🔧 Transferência forçada de bullet train",
+          "balance": 194,
+          "ts": "2026-06-03T18:55:05.931Z"
+        },
+        {
+          "amount": 0,
+          "reason": "🔧 Admin retirou gemas de Carlos Jr",
+          "balance": 0,
+          "ts": "2026-06-03T18:45:25.977Z"
+        },
+        {
+          "amount": -144,
+          "reason": "🚨 🏦 Roubo a Banco — multado",
+          "balance": 0,
+          "ts": "2026-06-03T18:45:22.216Z"
+        },
+        {
+          "amount": 74,
+          "reason": "🔧 Transferência forçada de Nelmtriv",
+          "balance": 144,
+          "ts": "2026-06-03T18:44:58.566Z"
+        },
+        {
+          "amount": 20,
+          "reason": "🔧 Transferência forçada de Nelmtriv",
+          "balance": 20,
+          "ts": "2026-06-03T18:34:54.837Z"
+        },
+        {
+          "amount": 0,
+          "reason": "🚨 💳 Fraude Bancária — multado",
+          "balance": 0,
+          "ts": "2026-06-03T18:29:49.473Z"
+        },
+        {
+          "amount": 600,
+          "reason": "🔧 Transferência forçada de Ayra Mondlhane",
+          "balance": 682,
+          "ts": "2026-06-03T17:59:39.524Z"
+        },
+        {
+          "amount": -18,
+          "reason": "🛡️ Penalizado por tentar embebedar Odmila (escudo)",
+          "balance": 82,
+          "ts": "2026-06-03T17:58:32.966Z"
+        },
+        {
+          "amount": -85,
+          "reason": "🔧 Admin retirou gemas de Carlos Jr",
+          "balance": 0,
+          "ts": "2026-06-03T17:54:43.095Z"
+        },
+        {
+          "amount": 400,
+          "reason": "🔧 Transferência forçada de Lawilka✨",
+          "balance": 485,
+          "ts": "2026-06-03T17:52:35.083Z"
+        }
+      ],
+      "daily_games": {
+        "crime": {
+          "count": 4,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        },
+        "forca": {
+          "count": 19,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        },
+        "trabalhar": {
+          "count": 5,
+          "date": "Wed Jun 03 2026",
+          "warned": true
+        },
+        "quiz": {
+          "count": 1,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        },
+        "embebedar": {
+          "count": 1,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        }
+      },
+      "last_tax_date": "Wed Jun 03 2026",
+      "titulo": null,
+      "insurance_until": null,
+      "loan": {
+        "active": false,
+        "amount": 0,
+        "total": 0,
+        "due": null
       }
     },
     "176089632653348@lid": {
       "jid": "176089632653348@lid",
       "name": "Odmila",
-      "gemas": 126,
-      "wins": 26,
-      "losses": 7,
-      "games": 33,
-      "last_daily": "2026-06-02T07:12:27.214Z",
+      "gemas": 277,
+      "wins": 93,
+      "losses": 21,
+      "games": 114,
+      "last_daily": "2026-06-03T07:50:13.055Z",
       "last_mine": "2026-06-02T07:13:24.839Z",
       "created_at": "2026-06-02T06:50:37.436Z",
-      "bank": 400,
-      "xp": 163,
-      "level": 2,
-      "pontos": 215,
-      "streak": 0,
-      "job": "desempregado",
+      "bank": 3261,
+      "xp": 303,
+      "level": 5,
+      "pontos": 1268,
+      "streak": 1,
+      "job": "minerador",
       "mine_today_count": 0,
       "mine_today_date": null,
-      "last_rob": "2026-06-02T09:32:09.227Z",
+      "last_rob": "2026-06-03T20:08:10.207Z",
       "last_work": "2026-06-02T07:36:24.023Z",
-      "last_crime": "2026-06-02T07:26:29.915Z",
-      "last_bank_interest": null,
+      "last_crime": "2026-06-03T20:06:03.414Z",
+      "last_bank_interest": "2026-06-03T09:26:07.684Z",
       "prison_until": null,
       "achievements": {
-        "primeiraVitoria": "2026-06-02T08:51:46.494Z"
+        "primeiraVitoria": "2026-06-02T08:51:46.494Z",
+        "rico": "2026-06-03T08:52:49.539Z",
+        "banqueiro": "2026-06-03T08:53:26.648Z",
+        "apostador": "2026-06-03T17:52:32.277Z",
+        "empregado": "2026-06-03T20:23:13.525Z"
       },
       "stats": {
-        "works": 2,
-        "wins": 13,
-        "bankDeposited": 400
+        "works": 10,
+        "wins": 71,
+        "bankDeposited": 4500,
+        "crimes": 4,
+        "mines": 3
       },
       "inventory": {
-        "picareta": 0,
-        "bond7": 0,
+        "picareta": 17,
+        "bond7": 1,
         "vingancagema": 0,
-        "escudo": 3
+        "escudo": 4
       },
-      "work_today_count": 1,
-      "work_today_date": "Tue Jun 02 2026",
+      "work_today_count": 5,
+      "work_today_date": "Wed Jun 03 2026",
       "cassino_today_count": 1,
       "cassino_today_date": "Tue Jun 02 2026",
-      "warnings": 0,
-      "partner": "275281717768409@lid",
-      "relationship_status": "casado",
+      "warnings": 1,
+      "partner": null,
+      "relationship_status": "solteiro",
       "last_paquerar": null,
       "historico": [
+        {
+          "amount": 154,
+          "reason": "🦹 🕵️ Furto Simples — sucesso",
+          "balance": 300,
+          "ts": "2026-06-03T20:06:03.415Z"
+        },
+        {
+          "amount": -100,
+          "reason": "🔧 Admin retirou gemas de Odmila",
+          "balance": 81,
+          "ts": "2026-06-03T19:53:47.577Z"
+        },
+        {
+          "amount": 0,
+          "reason": "🔧 Transferência forçada de Carlos Jr",
+          "balance": 51,
+          "ts": "2026-06-03T19:49:37.171Z"
+        },
+        {
+          "amount": 13,
+          "reason": "🔧 Transferência forçada de Carlos Jr",
+          "balance": 51,
+          "ts": "2026-06-03T19:49:20.574Z"
+        },
+        {
+          "amount": -400,
+          "reason": "🔧 Admin retirou gemas de Odmila",
+          "balance": 38,
+          "ts": "2026-06-03T19:48:55.983Z"
+        },
+        {
+          "amount": -66,
+          "reason": "🚨 🔫 Assalto — multado",
+          "balance": 433,
+          "ts": "2026-06-03T19:44:21.450Z"
+        },
+        {
+          "amount": 18,
+          "reason": "🛡️ Compensação: Carlos Jr tentou embebedar-te",
+          "balance": 205,
+          "ts": "2026-06-03T17:58:32.966Z"
+        },
+        {
+          "amount": 252,
+          "reason": "🦹 🔫 Assalto — sucesso",
+          "balance": 391,
+          "ts": "2026-06-03T17:47:23.609Z"
+        },
+        {
+          "amount": 160,
+          "reason": "🦹 🕵️ Furto Simples — sucesso",
+          "balance": 322,
+          "ts": "2026-06-03T17:12:30.713Z"
+        },
+        {
+          "amount": 15,
+          "reason": "🛡️ Compensação: Carlos Jr tentou roubar-te",
+          "balance": 265,
+          "ts": "2026-06-03T09:10:02.216Z"
+        },
+        {
+          "amount": 84,
+          "reason": "🦹 🕵️ Furto Simples — sucesso",
+          "balance": 820,
+          "ts": "2026-06-03T08:52:49.534Z"
+        },
+        {
+          "amount": 15,
+          "reason": "🎁 Bónus diário automático",
+          "balance": 141,
+          "ts": "2026-06-03T07:50:13.054Z"
+        },
         {
           "amount": -20,
           "reason": "🎰 Cassino — perdeu aposta",
@@ -196,23 +655,59 @@
           "balance": 687,
           "ts": "2026-06-02T09:09:37.189Z"
         }
-      ]
+      ],
+      "daily_games": {
+        "forca": {
+          "count": 30,
+          "date": "Wed Jun 03 2026",
+          "warned": true
+        },
+        "trabalhar": {
+          "count": 3,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        },
+        "crime": {
+          "count": 3,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        },
+        "quiz": {
+          "count": 5,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        },
+        "minerar": {
+          "count": 3,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        }
+      },
+      "last_tax_date": "2026-06-03T18:30:13.654Z",
+      "titulo": null,
+      "insurance_until": null,
+      "loan": {
+        "active": false,
+        "amount": 0,
+        "total": 0,
+        "due": null
+      }
     },
     "275281717768409@lid": {
       "jid": "275281717768409@lid",
       "name": "T'H",
-      "gemas": 154,
-      "wins": 11,
-      "losses": 2,
-      "games": 13,
-      "last_daily": "2026-06-02T06:52:45.994Z",
+      "gemas": 20,
+      "wins": 22,
+      "losses": 7,
+      "games": 29,
+      "last_daily": "2026-06-03T07:18:09.287Z",
       "last_mine": "2026-06-02T06:56:39.918Z",
       "created_at": "2026-06-02T06:52:24.185Z",
-      "bank": 80,
-      "xp": 113,
-      "level": 1,
-      "pontos": 77,
-      "streak": 0,
+      "bank": 0,
+      "xp": 195,
+      "level": 2,
+      "pontos": 239,
+      "streak": 1,
       "job": "desempregado",
       "mine_today_count": 0,
       "mine_today_date": null,
@@ -227,8 +722,8 @@
       "stats": {
         "works": 1,
         "robFails": 1,
-        "bankDeposited": 80,
-        "wins": 1
+        "bankDeposited": 105,
+        "wins": 2
       },
       "inventory": {
         "picareta": 0,
@@ -237,206 +732,217 @@
       },
       "work_today_count": 0,
       "work_today_date": null,
-      "cassino_today_count": 0,
-      "cassino_today_date": null,
-      "warnings": 0,
-      "partner": "176089632653348@lid",
-      "relationship_status": "casado",
-      "last_paquerar": null
-    },
-    "94309160341738@lid": {
-      "jid": "94309160341738@lid",
-      "name": "Alberto Jó 愛",
-      "gemas": 151,
-      "wins": 14,
-      "losses": 10,
-      "games": 24,
-      "last_daily": "2026-06-02T07:12:50.049Z",
-      "last_mine": "2026-06-02T07:02:10.453Z",
-      "created_at": "2026-06-02T06:52:33.236Z",
-      "bank": 0,
-      "xp": 107,
-      "level": 2,
-      "pontos": 105,
-      "streak": 0,
-      "job": "desempregado",
-      "mine_today_count": 0,
-      "mine_today_date": null,
-      "last_rob": "2026-06-02T07:35:20.584Z",
-      "last_work": "2026-06-02T08:10:56.742Z",
-      "last_crime": "2026-06-02T07:44:33.189Z",
-      "last_bank_interest": "2026-06-02T08:33:19.703Z",
-      "prison_until": null,
-      "achievements": {
-        "primeiraVitoria": "2026-06-02T07:25:00.712Z"
-      },
-      "stats": {
-        "wins": 7,
-        "robFails": 1,
-        "works": 2,
-        "duels": 1,
-        "bankDeposited": 211
-      },
-      "inventory": {
-        "picareta": 0,
-        "bond7": 0,
-        "vingancagema": 0,
-        "escudo": 2
-      },
-      "work_today_count": 1,
-      "work_today_date": "Tue Jun 02 2026",
-      "cassino_today_count": 0,
-      "cassino_today_date": null,
-      "warnings": 0,
-      "partner": null,
-      "relationship_status": "solteiro",
-      "last_paquerar": null
-    },
-    "63114812887096@lid": {
-      "jid": "63114812887096@lid",
-      "name": ".",
-      "gemas": 100,
-      "wins": 0,
-      "losses": 0,
-      "games": 0,
-      "last_daily": null,
-      "last_mine": null,
-      "created_at": "2026-06-02T07:15:19.823Z",
-      "bank": 0,
-      "xp": 0,
-      "level": 1,
-      "pontos": 0,
-      "streak": 0,
-      "job": "desempregado",
-      "mine_today_count": 0,
-      "mine_today_date": null,
-      "last_rob": null,
-      "last_work": null,
-      "work_today_count": 0,
-      "work_today_date": null,
-      "cassino_today_count": 0,
-      "cassino_today_date": null,
-      "last_crime": null,
-      "last_bank_interest": null,
-      "prison_until": null,
-      "achievements": {},
-      "stats": {},
-      "warnings": 0,
-      "partner": null,
-      "relationship_status": "solteiro",
-      "last_paquerar": null,
-      "inventory": {
-        "picareta": 0,
-        "bond7": 0,
-        "vingancagema": 0,
-        "escudo": 0
-      }
-    },
-    "265205959393309@lid": {
-      "jid": "265205959393309@lid",
-      "name": "bullet train",
-      "gemas": 115,
-      "bank": 167,
-      "xp": 85,
-      "level": 1,
-      "pontos": 55,
-      "wins": 5,
-      "losses": 7,
-      "games": 12,
-      "streak": 1,
-      "job": "desempregado",
-      "last_daily": "2026-06-02T07:30:41.688Z",
-      "last_mine": null,
-      "mine_today_count": 0,
-      "mine_today_date": null,
-      "last_rob": "2026-06-02T09:00:14.662Z",
-      "last_work": "2026-06-02T09:08:49.879Z",
-      "last_crime": null,
-      "last_bank_interest": null,
-      "prison_until": null,
-      "achievements": {
-        "primeiraVitoria": "2026-06-02T08:35:50.351Z"
-      },
-      "stats": {
-        "works": 3,
-        "wins": 2,
-        "bankDeposited": 167,
-        "robFails": 1
-      },
-      "inventory": {
-        "picareta": 0,
-        "bond7": 0,
-        "vingancagema": 0
-      },
-      "created_at": "2026-06-02T07:30:41.687Z",
-      "work_today_count": 3,
-      "work_today_date": "Tue Jun 02 2026",
-      "cassino_today_count": 3,
-      "cassino_today_date": "Tue Jun 02 2026",
+      "cassino_today_count": 1,
+      "cassino_today_date": "Wed Jun 03 2026",
       "warnings": 0,
       "partner": null,
       "relationship_status": "solteiro",
       "last_paquerar": null,
       "historico": [
         {
-          "amount": -8,
-          "reason": "🚨 Multa por roubo falhado a Johane Mahumane",
-          "balance": 48,
-          "ts": "2026-06-02T09:00:14.663Z"
+          "amount": -44,
+          "reason": "🎰 Cassino — perdeu aposta",
+          "balance": 0,
+          "ts": "2026-06-03T08:37:31.330Z"
+        },
+        {
+          "amount": 15,
+          "reason": "🎁 Bónus diário automático",
+          "balance": 54,
+          "ts": "2026-06-03T07:18:09.286Z"
         }
-      ]
+      ],
+      "daily_games": {},
+      "last_tax_date": null
     },
-    "198766875410525@lid": {
-      "jid": "198766875410525@lid",
-      "name": "Ayra Mondlhane",
-      "gemas": 65,
-      "bank": 0,
-      "xp": 0,
-      "level": 1,
-      "pontos": 0,
-      "wins": 0,
-      "losses": 0,
-      "games": 0,
+    "94309160341738@lid": {
+      "jid": "94309160341738@lid",
+      "name": "Alberto Jó 愛",
+      "gemas": 0,
+      "wins": 64,
+      "losses": 32,
+      "games": 96,
+      "last_daily": "2026-06-03T07:21:55.080Z",
+      "last_mine": "2026-06-02T07:02:10.453Z",
+      "created_at": "2026-06-02T06:52:33.236Z",
+      "bank": 4990,
+      "xp": 60,
+      "level": 5,
+      "pontos": 973,
       "streak": 1,
-      "job": "desempregado",
-      "last_daily": "2026-06-02T08:19:28.201Z",
-      "last_mine": null,
-      "mine_today_count": 0,
-      "mine_today_date": null,
-      "last_rob": null,
-      "last_work": null,
-      "work_today_count": 0,
-      "work_today_date": null,
-      "cassino_today_count": 0,
-      "cassino_today_date": null,
-      "last_crime": null,
-      "last_bank_interest": null,
+      "job": "ajudante",
+      "mine_today_count": 3,
+      "mine_today_date": "Wed Jun 03 2026",
+      "last_rob": "2026-06-03T08:51:10.744Z",
+      "last_work": "2026-06-02T08:10:56.742Z",
+      "last_crime": "2026-06-03T20:33:18.711Z",
+      "last_bank_interest": "2026-06-03T09:25:59.413Z",
       "prison_until": null,
-      "achievements": {},
-      "stats": {},
+      "achievements": {
+        "primeiraVitoria": "2026-06-02T07:25:00.712Z",
+        "banqueiro": "2026-06-02T19:31:05.601Z",
+        "vingador": "2026-06-03T08:51:10.748Z",
+        "rico": "2026-06-03T09:12:04.986Z",
+        "empregado": "2026-06-03T19:31:51.812Z",
+        "apostador": "2026-06-03T20:20:46.789Z"
+      },
+      "stats": {
+        "wins": 57,
+        "robFails": 1,
+        "works": 14,
+        "duels": 1,
+        "bankDeposited": 6493,
+        "mines": 9,
+        "crimes": 4
+      },
       "inventory": {
-        "picareta": 0,
+        "picareta": 11,
         "bond7": 0,
         "vingancagema": 0,
-        "escudo": 0
+        "escudo": 1
       },
-      "created_at": "2026-06-02T08:19:28.198Z"
+      "work_today_count": 5,
+      "work_today_date": "Wed Jun 03 2026",
+      "cassino_today_count": 0,
+      "cassino_today_date": null,
+      "warnings": 1,
+      "partner": null,
+      "relationship_status": "solteiro",
+      "last_paquerar": null,
+      "historico": [
+        {
+          "amount": -20,
+          "reason": "🚨 🕵️ Furto Simples — multado",
+          "balance": 0,
+          "ts": "2026-06-03T20:33:18.714Z"
+        },
+        {
+          "amount": -24,
+          "reason": "🚨 🏦 Roubo a Banco — multado",
+          "balance": 0,
+          "ts": "2026-06-03T19:55:35.101Z"
+        },
+        {
+          "amount": 150,
+          "reason": "🔧 Transferência forçada de Lawilka✨",
+          "balance": 224,
+          "ts": "2026-06-03T19:53:50.287Z"
+        },
+        {
+          "amount": -300,
+          "reason": "🔧 Admin retirou gemas de Alberto Jó 愛",
+          "balance": 174,
+          "ts": "2026-06-03T19:51:45.750Z"
+        },
+        {
+          "amount": 123,
+          "reason": "🦹 🕵️ Furto Simples — sucesso",
+          "balance": 219,
+          "ts": "2026-06-03T19:31:26.143Z"
+        },
+        {
+          "amount": -500,
+          "reason": "🔧 Admin retirou gemas de Alberto Jó 愛",
+          "balance": 96,
+          "ts": "2026-06-03T18:57:45.441Z"
+        },
+        {
+          "amount": 10,
+          "reason": "🔧 Transferência forçada de Lawilka✨",
+          "balance": 12,
+          "ts": "2026-06-03T09:19:15.327Z"
+        },
+        {
+          "amount": 662,
+          "reason": "🦹 💳 Fraude Bancária — sucesso",
+          "balance": 672,
+          "ts": "2026-06-03T09:12:04.984Z"
+        },
+        {
+          "amount": 65,
+          "reason": "🔧 Transferência forçada de Ayra Mondlhane",
+          "balance": 65,
+          "ts": "2026-06-03T08:56:11.164Z"
+        },
+        {
+          "amount": -1,
+          "reason": "🚨 🔫 Assalto — multado",
+          "balance": 0,
+          "ts": "2026-06-03T08:52:27.383Z"
+        },
+        {
+          "amount": 35,
+          "reason": "🛡️ Compensação: Nelmtriv tentou roubar-te",
+          "balance": 221,
+          "ts": "2026-06-03T08:48:01.707Z"
+        },
+        {
+          "amount": 124,
+          "reason": "🦹 🕵️ Furto Simples — sucesso",
+          "balance": 149,
+          "ts": "2026-06-03T08:15:09.993Z"
+        },
+        {
+          "amount": 24,
+          "reason": "🔧 Transferência forçada de Johane Mahumane",
+          "balance": 70,
+          "ts": "2026-06-03T07:32:50.926Z"
+        },
+        {
+          "amount": 15,
+          "reason": "🎁 Bónus diário automático",
+          "balance": 109,
+          "ts": "2026-06-03T07:21:55.079Z"
+        }
+      ],
+      "daily_games": {
+        "crime": {
+          "count": 4,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        },
+        "trabalhar": {
+          "count": 5,
+          "date": "Wed Jun 03 2026",
+          "warned": true
+        },
+        "minerar": {
+          "count": 3,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        },
+        "forca": {
+          "count": 25,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        }
+      },
+      "last_tax_date": "2026-06-03T18:56:59.480Z",
+      "titulo": null,
+      "insurance_until": null,
+      "loan": {
+        "active": false,
+        "amount": 0,
+        "total": 0,
+        "due": null
+      }
     },
-    "20341015494756@lid": {
-      "jid": "20341015494756@lid",
-      "name": "20341015494756",
-      "gemas": 50,
+    "63114812887096@lid": {
+      "jid": "63114812887096@lid",
+      "name": ".",
+      "gemas": 185,
+      "wins": 0,
+      "losses": 0,
+      "games": 0,
+      "last_daily": "2026-06-02T18:47:39.518Z",
+      "last_mine": null,
+      "created_at": "2026-06-02T07:15:19.823Z",
       "bank": 0,
       "xp": 0,
       "level": 1,
       "pontos": 0,
-      "wins": 0,
-      "losses": 0,
-      "games": 0,
-      "streak": 0,
+      "streak": 1,
       "job": "desempregado",
-      "last_daily": null,
-      "last_mine": null,
       "mine_today_count": 0,
       "mine_today_date": null,
       "last_rob": null,
@@ -460,7 +966,405 @@
         "vingancagema": 0,
         "escudo": 0
       },
-      "created_at": "2026-06-02T08:49:11.343Z"
+      "historico": [
+        {
+          "amount": 15,
+          "reason": "🎁 Bónus diário automático",
+          "balance": 115,
+          "ts": "2026-06-02T18:47:39.517Z"
+        }
+      ],
+      "daily_games": {},
+      "last_tax_date": null
+    },
+    "265205959393309@lid": {
+      "jid": "265205959393309@lid",
+      "name": "bullet train",
+      "gemas": 2,
+      "bank": 4930,
+      "xp": 414,
+      "level": 3,
+      "pontos": 597,
+      "wins": 32,
+      "losses": 30,
+      "games": 62,
+      "streak": 2,
+      "job": "desempregado",
+      "last_daily": "2026-06-03T07:30:42.080Z",
+      "last_mine": null,
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": "2026-06-03T20:13:33.697Z",
+      "last_work": "2026-06-02T09:08:49.879Z",
+      "last_crime": "2026-06-03T20:11:46.470Z",
+      "last_bank_interest": "2026-06-03T07:30:43.656Z",
+      "prison_until": null,
+      "achievements": {
+        "primeiraVitoria": "2026-06-02T08:35:50.351Z",
+        "banqueiro": "2026-06-02T19:29:51.777Z",
+        "empregado": "2026-06-03T07:44:07.627Z",
+        "rico": "2026-06-03T08:14:57.494Z",
+        "milionario": "2026-06-03T19:53:07.176Z"
+      },
+      "stats": {
+        "works": 15,
+        "wins": 27,
+        "bankDeposited": 6714,
+        "robFails": 4,
+        "crimes": 6,
+        "mines": 3
+      },
+      "inventory": {
+        "picareta": 17,
+        "bond7": 1,
+        "vingancagema": 0,
+        "escudo": 3
+      },
+      "created_at": "2026-06-02T07:30:41.687Z",
+      "work_today_count": 5,
+      "work_today_date": "Wed Jun 03 2026",
+      "cassino_today_count": 3,
+      "cassino_today_date": "Wed Jun 03 2026",
+      "warnings": 3,
+      "partner": null,
+      "relationship_status": "solteiro",
+      "last_paquerar": null,
+      "historico": [
+        {
+          "amount": -30,
+          "reason": "🎰 Cassino — perdeu aposta",
+          "balance": 32,
+          "ts": "2026-06-03T20:33:05.654Z"
+        },
+        {
+          "amount": 15,
+          "reason": "🎰 Cassino — combinação ×1.5",
+          "balance": 62,
+          "ts": "2026-06-03T20:32:01.678Z"
+        },
+        {
+          "amount": 0,
+          "reason": "🛡️ Penalizado por tentar embebedar Carlos Jr (escudo)",
+          "balance": 0,
+          "ts": "2026-06-03T20:13:33.698Z"
+        },
+        {
+          "amount": 0,
+          "reason": "🚨 💳 Fraude Bancária — multado",
+          "balance": 0,
+          "ts": "2026-06-03T20:11:46.471Z"
+        },
+        {
+          "amount": 69,
+          "reason": "🔧 Transferência forçada de Johane Mahumane",
+          "balance": 69,
+          "ts": "2026-06-03T19:56:51.211Z"
+        },
+        {
+          "amount": -48,
+          "reason": "🔧 Admin retirou gemas de bullet train",
+          "balance": 0,
+          "ts": "2026-06-03T19:55:54.401Z"
+        },
+        {
+          "amount": 48,
+          "reason": "🔧 Transferência forçada de Carlos Jr",
+          "balance": 48,
+          "ts": "2026-06-03T19:55:41.139Z"
+        },
+        {
+          "amount": -48,
+          "reason": "🔧 Admin retirou gemas de bullet train",
+          "balance": 0,
+          "ts": "2026-06-03T19:54:00.795Z"
+        },
+        {
+          "amount": 0,
+          "reason": "🛡️ Penalizado por tentar roubar Carlos Jr (escudo)",
+          "balance": 0,
+          "ts": "2026-06-03T18:56:14.969Z"
+        },
+        {
+          "amount": -194,
+          "reason": "🔧 Admin retirou gemas de bullet train",
+          "balance": 0,
+          "ts": "2026-06-03T18:55:05.930Z"
+        },
+        {
+          "amount": -66,
+          "reason": "🚨 🔫 Assalto — multado",
+          "balance": 294,
+          "ts": "2026-06-03T18:54:48.953Z"
+        },
+        {
+          "amount": -279,
+          "reason": "🚨 🏦 Roubo a Banco — multado",
+          "balance": 0,
+          "ts": "2026-06-03T18:38:57.325Z"
+        },
+        {
+          "amount": 524,
+          "reason": "🦹 💳 Fraude Bancária — sucesso",
+          "balance": 584,
+          "ts": "2026-06-03T17:43:07.364Z"
+        },
+        {
+          "amount": -10,
+          "reason": "🛡️ Penalizado por tentar roubar Carlos Jr (escudo)",
+          "balance": 50,
+          "ts": "2026-06-03T17:31:43.261Z"
+        },
+        {
+          "amount": 475,
+          "reason": "🦹 🔫 Assalto — sucesso",
+          "balance": 505,
+          "ts": "2026-06-03T17:15:28.540Z"
+        },
+        {
+          "amount": 110,
+          "reason": "🦹 🕵️ Furto Simples — sucesso",
+          "balance": 130,
+          "ts": "2026-06-03T16:42:06.416Z"
+        },
+        {
+          "amount": 20,
+          "reason": "🔧 Transferência forçada de Carlos Jr",
+          "balance": 20,
+          "ts": "2026-06-03T09:31:35.012Z"
+        },
+        {
+          "amount": -36,
+          "reason": "🚨 🔫 Assalto — multado",
+          "balance": 0,
+          "ts": "2026-06-03T09:14:29.912Z"
+        },
+        {
+          "amount": 100,
+          "reason": "🔧 Transferência forçada de Johane Mahumane",
+          "balance": 236,
+          "ts": "2026-06-03T08:58:00.119Z"
+        },
+        {
+          "amount": 86,
+          "reason": "🔧 Transferência forçada de Johane Mahumane",
+          "balance": 136,
+          "ts": "2026-06-03T08:57:30.488Z"
+        }
+      ],
+      "daily_games": {
+        "forca": {
+          "count": 30,
+          "date": "Wed Jun 03 2026",
+          "warned": true
+        },
+        "crime": {
+          "count": 5,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        },
+        "roubar": {
+          "count": 1,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        },
+        "quiz": {
+          "count": 8,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        },
+        "embebedar": {
+          "count": 2,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        },
+        "trabalhar": {
+          "count": 5,
+          "date": "Wed Jun 03 2026",
+          "warned": true
+        },
+        "minerar": {
+          "count": 3,
+          "date": "Wed Jun 03 2026",
+          "warned": true
+        },
+        "cassino": {
+          "count": 2,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        }
+      },
+      "last_tax_date": "Wed Jun 03 2026",
+      "titulo": null,
+      "insurance_until": null,
+      "loan": {
+        "active": false,
+        "amount": 0,
+        "total": 0,
+        "due": null
+      }
+    },
+    "198766875410525@lid": {
+      "jid": "198766875410525@lid",
+      "name": "Ayra Mondlhane",
+      "gemas": 23,
+      "bank": 0,
+      "xp": 0,
+      "level": 1,
+      "pontos": 0,
+      "wins": 0,
+      "losses": 0,
+      "games": 0,
+      "streak": 2,
+      "job": "desempregado",
+      "last_daily": "2026-06-03T09:07:15.704Z",
+      "last_mine": null,
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": null,
+      "last_work": null,
+      "work_today_count": 0,
+      "work_today_date": null,
+      "cassino_today_count": 0,
+      "cassino_today_date": null,
+      "last_crime": null,
+      "last_bank_interest": null,
+      "prison_until": null,
+      "achievements": {},
+      "stats": {},
+      "inventory": {
+        "picareta": 0,
+        "bond7": 0,
+        "vingancagema": 0,
+        "escudo": 0
+      },
+      "created_at": "2026-06-02T08:19:28.198Z",
+      "warnings": 0,
+      "partner": null,
+      "relationship_status": "solteiro",
+      "last_paquerar": null,
+      "historico": [
+        {
+          "amount": -600,
+          "reason": "🔧 Admin retirou gemas de Ayra Mondlhane",
+          "balance": 3,
+          "ts": "2026-06-03T17:59:39.523Z"
+        },
+        {
+          "amount": 23,
+          "reason": "🚨 Multa recebida de Carlos Jr",
+          "balance": 603,
+          "ts": "2026-06-03T17:39:05.135Z"
+        },
+        {
+          "amount": 15,
+          "reason": "🎁 Bónus diário automático",
+          "balance": 15,
+          "ts": "2026-06-03T09:07:15.703Z"
+        },
+        {
+          "amount": -65,
+          "reason": "🔧 Admin retirou gemas de Ayra Mondlhane",
+          "balance": 0,
+          "ts": "2026-06-03T08:56:11.163Z"
+        }
+      ],
+      "daily_games": {},
+      "last_tax_date": null
+    },
+    "20341015494756@lid": {
+      "jid": "20341015494756@lid",
+      "name": "Lawilka✨",
+      "gemas": 34,
+      "bank": 0,
+      "xp": 30,
+      "level": 1,
+      "pontos": 0,
+      "wins": 0,
+      "losses": 1,
+      "games": 1,
+      "streak": 2,
+      "job": "desempregado",
+      "last_daily": "2026-06-03T19:39:08.001Z",
+      "last_mine": null,
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": null,
+      "last_work": null,
+      "work_today_count": 5,
+      "work_today_date": "Wed Jun 03 2026",
+      "cassino_today_count": 0,
+      "cassino_today_date": null,
+      "last_crime": null,
+      "last_bank_interest": null,
+      "prison_until": null,
+      "achievements": {},
+      "stats": {
+        "works": 5
+      },
+      "warnings": 0,
+      "partner": null,
+      "relationship_status": "solteiro",
+      "last_paquerar": null,
+      "inventory": {
+        "picareta": 0,
+        "bond7": 0,
+        "vingancagema": 0,
+        "escudo": 3
+      },
+      "created_at": "2026-06-02T08:49:11.343Z",
+      "historico": [
+        {
+          "amount": -150,
+          "reason": "🔧 Admin retirou gemas de Lawilka✨",
+          "balance": 34,
+          "ts": "2026-06-03T19:53:50.286Z"
+        },
+        {
+          "amount": 15,
+          "reason": "🎁 Bónus diário automático",
+          "balance": 194,
+          "ts": "2026-06-03T19:39:08.000Z"
+        },
+        {
+          "amount": -400,
+          "reason": "🔧 Admin retirou gemas de Lawilka✨",
+          "balance": 114,
+          "ts": "2026-06-03T17:52:35.081Z"
+        },
+        {
+          "amount": -10,
+          "reason": "🔧 Admin retirou gemas de Lawilka✨",
+          "balance": 55,
+          "ts": "2026-06-03T09:19:15.326Z"
+        },
+        {
+          "amount": 15,
+          "reason": "🎁 Bónus diário automático",
+          "balance": 65,
+          "ts": "2026-06-02T19:02:03.869Z"
+        }
+      ],
+      "daily_games": {
+        "blackjack": {
+          "count": 1,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        },
+        "quiz": {
+          "count": 2,
+          "date": "Wed Jun 03 2026",
+          "warned": false
+        }
+      },
+      "last_tax_date": null,
+      "titulo": null,
+      "insurance_until": null,
+      "loan": {
+        "active": false,
+        "amount": 0,
+        "total": 0,
+        "due": null
+      }
     },
     "test@s.whatsapp.net": {
       "jid": "test@s.whatsapp.net",
@@ -501,6 +1405,230 @@
         "escudo": 0
       },
       "created_at": "2026-06-02T09:12:25.491Z"
+    },
+    "226259078529194@lid": {
+      "jid": "226259078529194@lid",
+      "name": "_",
+      "gemas": 85,
+      "bank": 0,
+      "xp": 0,
+      "level": 1,
+      "pontos": 0,
+      "wins": 0,
+      "losses": 0,
+      "games": 0,
+      "streak": 1,
+      "job": "desempregado",
+      "last_daily": "2026-06-02T19:00:10.060Z",
+      "last_mine": null,
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": null,
+      "last_work": null,
+      "work_today_count": 0,
+      "work_today_date": null,
+      "cassino_today_count": 0,
+      "cassino_today_date": null,
+      "last_crime": null,
+      "last_bank_interest": null,
+      "prison_until": null,
+      "achievements": {},
+      "stats": {},
+      "warnings": 0,
+      "partner": null,
+      "relationship_status": "solteiro",
+      "last_paquerar": null,
+      "inventory": {
+        "picareta": 0,
+        "bond7": 0,
+        "vingancagema": 0,
+        "escudo": 0
+      },
+      "created_at": "2026-06-02T19:00:10.059Z",
+      "historico": [
+        {
+          "amount": 15,
+          "reason": "🎁 Bónus diário automático",
+          "balance": 65,
+          "ts": "2026-06-02T19:00:10.059Z"
+        }
+      ],
+      "daily_games": {},
+      "last_tax_date": null
+    },
+    "120363426517146462@g.us": {
+      "jid": "120363426517146462@g.us",
+      "name": "120363426517146462",
+      "gemas": 65,
+      "bank": 0,
+      "xp": 0,
+      "level": 1,
+      "pontos": 0,
+      "wins": 0,
+      "losses": 0,
+      "games": 0,
+      "streak": 1,
+      "job": "desempregado",
+      "last_daily": "2026-06-03T07:51:02.350Z",
+      "last_mine": null,
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": null,
+      "last_work": null,
+      "work_today_count": 0,
+      "work_today_date": null,
+      "cassino_today_count": 0,
+      "cassino_today_date": null,
+      "last_crime": null,
+      "last_bank_interest": null,
+      "prison_until": null,
+      "achievements": {},
+      "stats": {},
+      "warnings": 0,
+      "partner": null,
+      "relationship_status": "solteiro",
+      "last_paquerar": null,
+      "inventory": {
+        "picareta": 0,
+        "bond7": 0,
+        "vingancagema": 0,
+        "escudo": 0
+      },
+      "created_at": "2026-06-03T07:51:02.347Z",
+      "historico": [
+        {
+          "amount": 15,
+          "reason": "🎁 Bónus diário automático",
+          "balance": 65,
+          "ts": "2026-06-03T07:51:02.349Z"
+        }
+      ]
+    },
+    "7228799119399@lid": {
+      "jid": "7228799119399@lid",
+      "name": "7228799119399",
+      "gemas": 70,
+      "bank": 0,
+      "xp": 0,
+      "level": 1,
+      "pontos": 0,
+      "wins": 0,
+      "losses": 0,
+      "games": 0,
+      "streak": 0,
+      "job": "desempregado",
+      "last_daily": null,
+      "last_mine": null,
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": null,
+      "last_work": null,
+      "work_today_count": 0,
+      "work_today_date": null,
+      "cassino_today_count": 0,
+      "cassino_today_date": null,
+      "last_crime": null,
+      "last_bank_interest": null,
+      "prison_until": null,
+      "achievements": {},
+      "stats": {},
+      "warnings": 0,
+      "partner": null,
+      "relationship_status": "solteiro",
+      "last_paquerar": null,
+      "inventory": {
+        "picareta": 0,
+        "bond7": 0,
+        "vingancagema": 0,
+        "escudo": 0
+      },
+      "created_at": "2026-06-03T17:47:32.186Z",
+      "daily_games": {},
+      "last_tax_date": null
+    },
+    "201442992365709@lid": {
+      "jid": "201442992365709@lid",
+      "name": "201442992365709",
+      "gemas": 70,
+      "bank": 0,
+      "xp": 0,
+      "level": 1,
+      "pontos": 0,
+      "wins": 0,
+      "losses": 0,
+      "games": 0,
+      "streak": 0,
+      "job": "desempregado",
+      "last_daily": null,
+      "last_mine": null,
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": null,
+      "last_work": null,
+      "work_today_count": 0,
+      "work_today_date": null,
+      "cassino_today_count": 0,
+      "cassino_today_date": null,
+      "last_crime": null,
+      "last_bank_interest": null,
+      "prison_until": null,
+      "achievements": {},
+      "stats": {},
+      "warnings": 0,
+      "daily_games": {},
+      "last_tax_date": null,
+      "partner": null,
+      "relationship_status": "solteiro",
+      "last_paquerar": null,
+      "inventory": {
+        "picareta": 0,
+        "bond7": 0,
+        "vingancagema": 0,
+        "escudo": 0
+      },
+      "created_at": "2026-06-03T19:36:29.877Z"
+    },
+    "145565182652670@lid": {
+      "jid": "145565182652670@lid",
+      "name": "145565182652670",
+      "gemas": 70,
+      "bank": 0,
+      "xp": 0,
+      "level": 1,
+      "pontos": 0,
+      "wins": 0,
+      "losses": 0,
+      "games": 0,
+      "streak": 0,
+      "job": "desempregado",
+      "last_daily": null,
+      "last_mine": null,
+      "mine_today_count": 0,
+      "mine_today_date": null,
+      "last_rob": null,
+      "last_work": null,
+      "work_today_count": 0,
+      "work_today_date": null,
+      "cassino_today_count": 0,
+      "cassino_today_date": null,
+      "last_crime": null,
+      "last_bank_interest": null,
+      "prison_until": null,
+      "achievements": {},
+      "stats": {},
+      "warnings": 0,
+      "daily_games": {},
+      "last_tax_date": null,
+      "partner": null,
+      "relationship_status": "solteiro",
+      "last_paquerar": null,
+      "inventory": {
+        "picareta": 0,
+        "bond7": 0,
+        "vingancagema": 0,
+        "escudo": 0
+      },
+      "created_at": "2026-06-03T19:36:29.884Z"
     }
   },
   "active_games": {
@@ -515,28 +1643,21 @@
       },
       "created_at": "2026-06-02T07:19:32.481Z"
     },
-    "120363426517146462@g.us__forca": {
-      "group_jid": "120363426517146462@g.us",
+    "120363425279258079@g.us__forca": {
+      "group_jid": "120363425279258079@g.us",
       "game_type": "forca",
-      "player_jid": "176089632653348@lid",
+      "player_jid": "261494973427951@lid",
       "state": {
-        "word": "eletricidade",
-        "hint": "Forma de energia relacionada com cargas elétricas em movimento ou em repouso",
-        "guessed": [
-          "a"
-        ],
+        "word": "genoma",
+        "hint": "Conjunto completo de informação genética de um organismo, contida no seu ADN",
+        "guessed": [],
         "errors": 0,
-        "lettersUsed": 1
+        "lettersUsed": 0
       },
-      "created_at": "2026-06-02T09:53:05.290Z"
+      "created_at": "2026-06-03T20:37:14.722Z"
     }
   },
   "revenge": {
-    "176089632653348@lid": {
-      "robberJid": "129120021307427@lid",
-      "groupJid": "120363426517146462@g.us",
-      "expires": "2026-06-02T11:09:37.190Z"
-    },
     "227393251893295@lid": {
       "robberJid": "265205959393309@lid",
       "groupJid": "120363426517146462@g.us",
@@ -548,20 +1669,23 @@
       "expires": "2026-06-02T09:43:22.958Z"
     },
     "265205959393309@lid": {
-      "robberJid": "227393251893295@lid",
-      "groupJid": "120363426517146462@g.us",
-      "expires": "2026-06-02T10:16:04.971Z"
+      "robberJid": "129120021307427@lid",
+      "groupJid": "120363426517146462@g.us"
     },
-    "94309160341738@lid": {
-      "robberJid": "227393251893295@lid",
-      "groupJid": "120363426517146462@g.us",
-      "expires": "2026-06-02T11:04:31.993Z"
+    "261494973427951@lid": {
+      "robberJid": "265205959393309@lid",
+      "groupJid": "120363426649333159@g.us"
     },
-    "129120021307427@lid": {
-      "robberJid": "176089632653348@lid",
-      "groupJid": "120363426517146462@g.us",
-      "expires": "2026-06-02T11:32:09.228Z"
+    "198766875410525@lid": {
+      "robberJid": "261494973427951@lid",
+      "groupJid": "120363426649333159@g.us"
     }
   },
-  "proposals": {}
+  "proposals": {},
+  "lotaria": {
+    "pool": 60,
+    "tickets": {
+      "265205959393309@lid": 1
+    }
+  }
 }

@@ -1,4 +1,5 @@
-const { getUser, removeGemas, addGemas } = require('../../database/users')
+const { getUser } = require('../../database/users')
+const { getData, save } = require('../../database/db')
 const { gem, mention } = require('../../utils/formatter')
 
 module.exports = {
@@ -15,40 +16,38 @@ module.exports = {
       return
     }
 
-    const targetJid = mentioned?.[0] || sender
-
+    const targetJid = mentioned[0]
     const amount = parseInt(amountArg)
-    const before = getUser(targetJid).gemas
-    const actual = Math.min(amount, before)
 
-    const isSelf = targetJid === sender
+    const db = getData()
 
-    removeGemas(targetJid, actual, isSelf ? '🔧 Admin removeu gemas da própria conta' : `🔧 Admin retirou gemas de ${getUser(targetJid).name}`)
-    if (!isSelf) addGemas(sender, actual, `🔧 Transferência forçada de ${getUser(targetJid).name}`)
+    if (!db.users[targetJid]) {
+      await sock.sendMessage(from, { text: '❌ Utilizador não encontrado.' }, { quoted: msg })
+      return
+    }
+
+    const targetBefore = db.users[targetJid].gemas || 0
+    const actual = Math.min(amount, targetBefore)
+
+    if (actual <= 0) {
+      await sock.sendMessage(from, { text: `❌ ${mention(targetJid)} não tem gemas suficientes.`, mentions: [targetJid] }, { quoted: msg })
+      return
+    }
+
+    // gems are destroyed — removed from economy
+    db.users[targetJid].gemas = targetBefore - actual
+    save()
 
     const target = getUser(targetJid)
-    const admin = getUser(sender, pushName)
 
-    if (isSelf) {
-      await sock.sendMessage(from, {
-        text: [
-          `✅ Removeste ${gem(actual)} da tua conta.`,
-          `💳 Saldo actual: ${gem(admin.gemas)}`,
-        ].join('\n'),
-      }, { quoted: msg })
-    } else {
-      await sock.sendMessage(from, {
-        text: [
-          `✅ Transferência forçada!`,
-          ``,
-          `💸 ${gem(actual)} retirados de ${mention(targetJid)}`,
-          `💰 Foram para a tua conta`,
-          ``,
-          `📊 ${mention(targetJid)}: ${gem(target.gemas)}`,
-          `📊 Tu: ${gem(admin.gemas)}`,
-        ].join('\n'),
-        mentions: [targetJid],
-      }, { quoted: msg })
-    }
+    await sock.sendMessage(from, {
+      text: [
+        `🏛️ *O governo confiscou gemas!*`,
+        ``,
+        `${mention(targetJid)} perdeu *${gem(actual)}* por ordem do governo.`,
+        `💳 Saldo de ${target.name}: ${gem(target.gemas)}`,
+      ].join('\n'),
+      mentions: [targetJid],
+    }, { quoted: msg })
   },
 }

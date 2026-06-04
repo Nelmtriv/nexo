@@ -1,4 +1,5 @@
 const { getUser, addGemas, removeGemas, updateUser, setLastRob, setRevenge, hasItem, useItem, addPontos } = require('../../database/users')
+const { checkDailyLimit, handleLimitExceeded } = require('../../utils/dailyLimit')
 const { addXP } = require('../../utils/level')
 const { checkAndAward } = require('../../utils/achievements')
 const { gem, mention } = require('../../utils/formatter')
@@ -44,6 +45,12 @@ module.exports = {
 
     const robber = getUser(sender, pushName)
 
+    const limitResult = checkDailyLimit(sender, 'embebedar')
+    if (!limitResult.allowed) {
+      await handleLimitExceeded(sock, from, msg, sender, robber.name, limitResult)
+      return
+    }
+
     if (robber.prison_until && new Date(robber.prison_until) > new Date()) {
       await sock.sendMessage(from, { text: `🔒 Estás na prisão!` }, { quoted: msg }); return
     }
@@ -74,6 +81,33 @@ module.exports = {
       }, { quoted: msg }); return
     }
 
+    // check insurance (time-based, 1 use) — consumed before Bond7
+    const victimFresh = getUser(targetJid)
+    if (victimFresh.insurance_until && new Date(victimFresh.insurance_until) > new Date()) {
+      const { getData, save } = require('../../database/db')
+      const db = getData()
+      db.users[targetJid].insurance_until = null
+      const penalty = Math.floor(robber.gemas * 0.20)
+      db.users[sender].gemas = Math.max(0, (db.users[sender].gemas || 0) - penalty)
+      save()
+      useItem(sender, 'bond7')
+      setLastRob(sender)
+      setRevenge(targetJid, sender, from)
+      const updR = getUser(sender)
+      await sock.sendMessage(from, {
+        text: [
+          `🔐 *Seguro activado!*`,
+          ``,
+          `*${robber.name}* tentou embebedar ${mention(targetJid)}, mas o seguro neutralizou tudo!`,
+          `🍶 Bond7 desperdiçado + 💸 Penalização: *-${gem(penalty)}*`,
+          `💳 Saldo: ${gem(updR.gemas)}`,
+          ``,
+          `⚠️ ${mention(targetJid)}, podes vingar-te quando quiseres!`,
+        ].join('\n'),
+        mentions: [targetJid],
+      }); return
+    }
+
     // check shield — shield blocks even Bond7!
     if (hasItem(targetJid, 'escudo')) {
       useItem(targetJid, 'escudo')
@@ -96,7 +130,7 @@ module.exports = {
           `💳 Saldo: ${gem(updatedRobber.gemas)}`,
           `🛡️ Escudo de ${mention(targetJid)}: ${shieldLeft} bloqueio(s) restantes`,
           ``,
-          `⚠️ ${mention(targetJid)}, podes vingar-te em 2h!`,
+          `⚠️ ${mention(targetJid)}, podes vingar-te quando quiseres!`,
         ].join('\n'),
         mentions: [targetJid],
       })
@@ -128,7 +162,7 @@ module.exports = {
           `*${robber.name}* roubou *${gem(stolen)}* de ${mention(targetJid)}! 💨`,
           `💳 Saldo: ${gem(updated.gemas)}`,
           ``,
-          `⚠️ ${mention(targetJid)}, podes vingar-te em 2h!`,
+          `⚠️ ${mention(targetJid)}, podes vingar-te quando quiseres!`,
         ].join('\n'),
         mentions: [targetJid],
       })
@@ -158,7 +192,7 @@ module.exports = {
           `💳 Saldo: ${gem(updated.gemas)}`,
           prisonText,
           ``,
-          `⚠️ ${mention(targetJid)}, podes vingar-te em 2h!`,
+          `⚠️ ${mention(targetJid)}, podes vingar-te quando quiseres!`,
         ].filter(Boolean).join('\n'),
         mentions: [targetJid],
       })

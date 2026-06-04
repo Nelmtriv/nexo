@@ -1,6 +1,6 @@
 const { getUser } = require('../../database/users')
 const { gem, header, durabilityBar } = require('../../utils/formatter')
-const { shop } = require('../../config')
+const { shop, titles } = require('../../config')
 const { getLevelTitle, xpBar } = require('../../utils/level')
 const { getAchievementList } = require('../../utils/achievements')
 
@@ -51,10 +51,13 @@ module.exports = {
       relLine += `  com *${partner.name}*`
     }
 
+    const tituloData = user.titulo ? titles[user.titulo] : null
+    const tituloLine = tituloData ? `${tituloData.emoji} *${tituloData.label}*  •  ` : ''
+
     const text = [
       header(`👤 ${user.name}`),
       ``,
-      `${title}  •  Nível ${level}`,
+      `${tituloLine}${title}  •  Nível ${level}`,
       `${xpBar(user.xp || 0, level)}`,
       ``,
       relLine,

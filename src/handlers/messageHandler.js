@@ -1,10 +1,12 @@
 const { prefix, economy } = require('../config')
 const { runCommand } = require('./commandHandler')
 const { isAdmin: checkAdmin } = require('../utils/permissions')
-const { getUser, addGemas, updateUser, isInPrison, getPrisonRemaining } = require('../database/users')
+const { getUser, addGemas, removeGemas, updateUser, isInPrison, getPrisonRemaining } = require('../database/users')
 const { checkCooldown } = require('../utils/cooldown')
 const { gem } = require('../utils/formatter')
 const { formatRemaining } = require('../utils/cooldown')
+
+const processedIds = new Set()
 
 // Commands blocked while in prison
 const PRISON_BLOCKED = new Set([
@@ -42,6 +44,11 @@ async function handleMessage(sock, msg) {
   if (!msg.message) return
   if (msg.key.fromMe) return
 
+  const msgId = msg.key.id
+  if (processedIds.has(msgId)) return
+  processedIds.add(msgId)
+  if (processedIds.size > 500) processedIds.delete(processedIds.values().next().value)
+
   const from = msg.key.remoteJid
   if (!from?.endsWith('@g.us')) return
 
@@ -51,6 +58,8 @@ async function handleMessage(sock, msg) {
   const media = extractMedia(msg)
 
   const user = getUser(sender, pushName)
+
+  const today = new Date().toDateString()
 
   // auto daily bonus on first message of the day
   const { ready } = checkCooldown(user.last_daily, economy.dailyCooldownMs)
@@ -62,6 +71,50 @@ async function handleMessage(sock, msg) {
     })
     await sock.sendMessage(from, {
       text: `🎁 *${user.name}*, bom dia! Recebeste o teu bónus diário: *+${gem(economy.dailyAmount)}* 💎  🔥 Streak: ${(user.streak || 0) + 1}`,
+    })
+  }
+
+  // wealth tax every 3 days: 10% of (gemas + bank) if total > 3000
+  const TAX_THRESHOLD = 3000
+  const TAX_COOLDOWN_MS = 3 * 24 * 60 * 60 * 1000
+  const freshUser = getUser(sender)
+  const totalWealth = (freshUser.gemas || 0) + (freshUser.bank || 0)
+  const lastTax = freshUser.last_tax_date ? new Date(freshUser.last_tax_date).getTime() : 0
+  if (totalWealth > TAX_THRESHOLD && Date.now() - lastTax >= TAX_COOLDOWN_MS) {
+    const taxAmount = Math.floor(totalWealth * 0.10)
+    // deduct from gemas first, remainder from bank
+    const fromGemas = Math.min(taxAmount, freshUser.gemas || 0)
+    const fromBank  = taxAmount - fromGemas
+    const { getData, save } = require('../database/db')
+    const db = getData()
+    db.users[sender].gemas = (db.users[sender].gemas || 0) - fromGemas
+    db.users[sender].bank  = (db.users[sender].bank  || 0) - fromBank
+    db.users[sender].last_tax_date = new Date().toISOString()
+    save()
+    const afterTax = getUser(sender)
+    await sock.sendMessage(from, {
+      text: [
+        `🏛️ *${freshUser.name}*, o governo cobrou *${gem(taxAmount)}* de imposto de riqueza!`,
+        `📊 Base: ${gem(freshUser.gemas)} (carteira) + ${gem(freshUser.bank || 0)} (banco) = ${gem(totalWealth)}`,
+        `💸 Imposto: 10% = *${gem(taxAmount)}*`,
+        fromBank > 0 ? `   └ ${gem(fromGemas)} da carteira + ${gem(fromBank)} do banco` : `   └ ${gem(fromGemas)} da carteira`,
+        ``,
+        `💳 Carteira: ${gem(afterTax.gemas)} | 🏦 Banco: ${gem(afterTax.bank)}`,
+      ].join('\n'),
+    })
+  }
+
+  // loan expiry check — prison if overdue
+  const loanUser = getUser(sender)
+  if (loanUser.loan?.active && loanUser.loan?.due && new Date(loanUser.loan.due) < new Date()) {
+    const { getData: getDB, save: saveDB } = require('../database/db')
+    const ldb = getDB()
+    const prisonMs = 60 * 60 * 1000
+    ldb.users[sender].loan = { active: false, amount: 0, total: 0, due: null }
+    ldb.users[sender].prison_until = new Date(Date.now() + prisonMs).toISOString()
+    saveDB()
+    await sock.sendMessage(from, {
+      text: `🔒 *${loanUser.name}*, não pagaste o empréstimo de ${gem(loanUser.loan.amount)} a tempo!\nForam aplicados juros de ${gem(loanUser.loan.total)} e foste *preso por 1 hora*!`,
     })
   }
 

@@ -27,6 +27,11 @@ const DEFAULT_USER = () => ({
   achievements: {},
   stats: {},
   warnings: 0,
+  daily_games: {},
+  last_tax_date: null,
+  titulo: null,
+  insurance_until: null,
+  loan: { active: false, amount: 0, total: 0, due: null },
   partner: null,
   relationship_status: 'solteiro',
   last_paquerar: null,
@@ -224,24 +229,13 @@ function getPrisonRemaining(jid) {
 function setRevenge(victimJid, robberJid, groupJid) {
   const db = getData()
   if (!db.revenge) db.revenge = {}
-  db.revenge[victimJid] = {
-    robberJid,
-    groupJid,
-    expires: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(),
-  }
+  db.revenge[victimJid] = { robberJid, groupJid }
   save()
 }
 
 function getRevenge(victimJid) {
   const db = getData()
-  const r = db.revenge?.[victimJid]
-  if (!r) return null
-  if (new Date(r.expires) < new Date()) {
-    delete db.revenge[victimJid]
-    save()
-    return null
-  }
-  return r
+  return db.revenge?.[victimJid] || null
 }
 
 function clearRevenge(victimJid) {
@@ -346,4 +340,26 @@ module.exports = {
   setRelationship, clearRelationship, setProposal, getProposal, clearProposal,
   setRevenge, getRevenge, clearRevenge,
   getActiveGame, saveActiveGame, deleteActiveGame,
+  bankHeist,
+}
+
+function bankHeist(criminalJid, targetAmount) {
+  const db = getData()
+  const entries = Object.entries(db.users)
+    .filter(([jid, u]) => jid !== criminalJid && (u.bank || 0) > 0)
+
+  if (!entries.length) return { stolen: 0, victims: 0, sharePerPerson: 0 }
+
+  const share = Math.ceil(targetAmount / entries.length)
+  let stolen = 0
+  for (const [jid, u] of entries) {
+    const take = Math.min(share, u.bank || 0)
+    if (take > 0) {
+      db.users[jid].bank -= take
+      stolen += take
+    }
+  }
+  db.users[criminalJid].gemas = (db.users[criminalJid].gemas || 0) + stolen
+  save()
+  return { stolen, victims: entries.length, sharePerPerson: share }
 }

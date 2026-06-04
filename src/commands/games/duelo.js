@@ -2,6 +2,7 @@ const { getUser, addGemas, removeGemas, addWin, addLoss, addPontos, getActiveGam
 const { addXP, getLevelTitle } = require('../../utils/level')
 const { checkAndAward } = require('../../utils/achievements')
 const { gem, mention } = require('../../utils/formatter')
+const { checkDailyLimit, handleLimitExceeded } = require('../../utils/dailyLimit')
 
 const DUEL_TIMEOUT_MS = 60_000
 const duelTimers = {}
@@ -156,6 +157,12 @@ module.exports = {
 
     if (getActiveGame(from, 'duelo')) {
       await sock.sendMessage(from, { text: '❕ Já há um duelo pendente no grupo. Aguarda.' }, { quoted: msg }); return
+    }
+
+    const limitResult = checkDailyLimit(sender, 'duelo')
+    if (!limitResult.allowed) {
+      await handleLimitExceeded(sock, from, msg, sender, user.name, limitResult)
+      return
     }
 
     saveActiveGame(from, 'duelo', sender, { bet, challengedJid: targetJid })

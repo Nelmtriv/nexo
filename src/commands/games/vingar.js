@@ -18,9 +18,9 @@ module.exports = {
     if (!revenge) {
       await sock.sendMessage(from, {
         text: [
-          `😌 Não tens nenhuma vingança pendente, ou o prazo de 2h já expirou.`,
+          `😌 Não tens nenhuma vingança pendente.`,
           ``,
-          `Só podes vingar-te de alguém que te roubou recentemente!`,
+          `Só podes vingar-te de alguém que te roubou!`,
         ].join('\n'),
       }, { quoted: msg }); return
     }
@@ -33,8 +33,6 @@ module.exports = {
           ``,
           `Compra na loja: */loja comprar vingancagema*`,
           `Preço: ${gem(shop.vingancagema.price)}`,
-          ``,
-          `⏳ Tens ${Math.ceil((new Date(revenge.expires).getTime() - Date.now()) / 60000)} min para agir!`,
         ].join('\n'),
       }, { quoted: msg }); return
     }

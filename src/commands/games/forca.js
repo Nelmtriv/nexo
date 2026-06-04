@@ -3,60 +3,82 @@ const { addXP } = require('../../utils/level')
 const { checkAndAward } = require('../../utils/achievements')
 const { gem } = require('../../utils/formatter')
 const { games } = require('../../config')
+const { checkDailyLimit, handleLimitExceeded } = require('../../utils/dailyLimit')
 
 const ENTRY_FEE = 5
 
 const WORDS = [
-  { word: 'fotossintese',   hint: 'Processo pelo qual as plantas produzem energia usando luz solar, água e CO₂' },
-  { word: 'gravitacao',     hint: 'Força que atrai corpos com massa entre si, descrita por Newton na sua lei universal' },
-  { word: 'evaporacao',     hint: 'Passagem de um líquido para o estado gasoso à superfície, sem atingir o ponto de ebulição' },
-  { word: 'metamorfose',    hint: 'Transformação completa de um organismo, como a lagarta que se torna borboleta' },
-  { word: 'ecosistema',     hint: 'Conjunto de seres vivos e o ambiente físico em que interagem numa determinada região' },
-  { word: 'erupcao',        hint: 'Expulsão violenta de lava, gases e cinzas por um vulcão' },
-  { word: 'terremoto',      hint: 'Tremor da crosta terrestre causado pelo movimento de placas tectónicas' },
-  { word: 'clorofila',      hint: 'Pigmento verde presente nas plantas responsável pela absorção de luz solar' },
-  { word: 'democracia',     hint: 'Sistema político em que o poder emana do povo, que governa direta ou por representação' },
-  { word: 'revolucao',      hint: 'Mudança radical e rápida numa sociedade, normalmente por meios violentos ou políticos' },
-  { word: 'respiracao',     hint: 'Processo biológico de troca de gases onde o oxigénio é absorvido e o CO₂ é libertado' },
-  { word: 'digestao',       hint: 'Processo de decomposição dos alimentos no organismo para absorção de nutrientes' },
-  { word: 'combustao',      hint: 'Reação química entre uma substância e oxigénio que produz calor e luz' },
-  { word: 'translacao',     hint: 'Movimento da Terra em torno do Sol que dura aproximadamente 365 dias' },
-  { word: 'rotacao',        hint: 'Movimento da Terra em torno do seu próprio eixo que determina o dia e a noite' },
-  { word: 'hibernacao',     hint: 'Estado de torpor prolongado de alguns animais durante o inverno para conservar energia' },
-  { word: 'condensacao',    hint: 'Passagem do estado gasoso para o líquido, como as gotas de água num copo frio' },
-  { word: 'magnetismo',     hint: 'Fenômeno físico de atração e repulsão entre materiais como o ferro e o ímã' },
-  { word: 'corrosao',       hint: 'Degradação de um material por reação química com o ambiente, como a ferrugem' },
-  { word: 'herbivoro',      hint: 'Animal que se alimenta exclusivamente de plantas e vegetais' },
-  { word: 'carnivoro',      hint: 'Animal que se alimenta de outros animais como principal fonte de energia' },
-  { word: 'onivoro',        hint: 'Animal que consome tanto plantas como outros animais na sua dieta' },
-  { word: 'predador',       hint: 'Animal que caça e mata outros animais para se alimentar' },
-  { word: 'microorganismo', hint: 'Ser vivo microscópico, como bactérias, vírus e fungos, invisível a olho nu' },
-  { word: 'antibiotico',    hint: 'Substância medicamentosa que elimina ou inibe o crescimento de bactérias' },
-  { word: 'vacina',         hint: 'Preparado biológico que estimula o sistema imunológico a criar defesas contra doenças' },
-  { word: 'cromossomo',     hint: 'Estrutura no núcleo da célula que contém o material genético (ADN) do organismo' },
-  { word: 'mutacao',        hint: 'Alteração permanente no ADN de um organismo, podendo ser hereditária' },
-  { word: 'evolucao',       hint: 'Processo de mudança gradual das espécies ao longo de gerações por seleção natural' },
-  { word: 'continente',     hint: 'Grande extensão contínua de terra. Existem sete no planeta Terra' },
-  { word: 'peninsula',      hint: 'Extensão de terra rodeada de água por quase todos os lados, exceto num ponto' },
-  { word: 'archipelago',    hint: 'Conjunto de ilhas agrupadas no oceano, como os Açores e as Canárias' },
-  { word: 'planalto',       hint: 'Extensão de terra elevada com superfície relativamente plana, também chamado de platô' },
-  { word: 'tributario',     hint: 'Rio secundário que desagua noutro rio principal, aumentando o seu caudal' },
-  { word: 'republica',      hint: 'Forma de governo em que o chefe de Estado é eleito e tem mandato limitado' },
-  { word: 'constituicao',   hint: 'Lei fundamental de um país que define os direitos dos cidadãos e a organização do Estado' },
-  { word: 'colonialismo',   hint: 'Sistema pelo qual países poderosos dominaram e exploraram territórios de outros povos' },
-  { word: 'escravatura',    hint: 'Sistema social em que seres humanos eram tratados como propriedade de outros' },
-  { word: 'industria',      hint: 'Setor da economia responsável pela produção de bens através de máquinas e fábricas' },
-  { word: 'tecnologia',     hint: 'Conjunto de conhecimentos e ferramentas criadas pelo homem para resolver problemas' },
-  { word: 'algoritmo',      hint: 'Sequência finita de instruções lógicas para resolver um problema ou realizar uma tarefa' },
-  { word: 'percentagem',    hint: 'Proporção por cento; forma de expressar uma parte em relação a 100 unidades totais' },
-  { word: 'estatistica',    hint: 'Ciência que recolhe, analisa e interpreta dados numéricos de populações ou amostras' },
-  { word: 'hipotese',       hint: 'Suposição provisória que serve de base para uma investigação científica' },
-  { word: 'experimento',    hint: 'Teste controlado realizado para confirmar ou refutar uma hipótese científica' },
-  { word: 'oxigenio',       hint: 'Elemento químico (O₂) essencial para a respiração dos seres vivos e para a combustão' },
-  { word: 'nitrogenio',     hint: 'Gás mais abundante na atmosfera terrestre, essencial para proteínas e ADN' },
-  { word: 'gravitacional',  hint: 'Relativo à força de atração entre corpos com massa; ex: campo gravitacional terrestre' },
-  { word: 'eletricidade',   hint: 'Forma de energia relacionada com cargas elétricas em movimento ou em repouso' },
-  { word: 'magnetico',      hint: 'Relativo ao magnetismo; campo que exerce forças sobre materiais ferromagnéticos' },
+  // Mitologia e história
+  { word: 'labirinto',      hint: 'Construção com corredores entrelaçados de onde é difícil sair; na mitologia grega, prendia o Minotauro' },
+  { word: 'minotauro',      hint: 'Criatura mitológica com corpo de homem e cabeça de touro, presa num labirinto em Creta' },
+  { word: 'oligarquia',     hint: 'Sistema político em que o poder é exercido por um pequeno grupo de pessoas privilegiadas' },
+  { word: 'feudalismo',     hint: 'Sistema medieval em que senhores cediam terras a vassalos em troca de serviço e lealdade' },
+  { word: 'absolutismo',    hint: 'Regime político em que o monarca detém poder total e ilimitado sobre o Estado' },
+  { word: 'iluminismo',     hint: 'Movimento filosófico do século XVIII que valorizava a razão, a ciência e os direitos humanos' },
+  { word: 'apartheid',      hint: 'Sistema de segregação racial que vigorou na África do Sul entre 1948 e 1994' },
+  { word: 'ditadura',       hint: 'Sistema político em que o poder é exercido por uma única pessoa de forma autoritária' },
+  // Física e óptica
+  { word: 'refracao',       hint: 'Mudança de direcção da luz ao passar de um meio para outro com diferente densidade óptica' },
+  { word: 'difracao',       hint: 'Fenómeno em que ondas de luz ou som se curvam ao passar por uma abertura ou obstáculo' },
+  { word: 'polarizacao',    hint: 'Fenómeno em que as oscilações de uma onda ficam restritas a um único plano' },
+  { word: 'interferencia',  hint: 'Fenómeno em que duas ondas se sobrepõem e se reforçam ou anulam mutuamente' },
+  { word: 'capacitor',      hint: 'Componente electrónico que armazena energia na forma de campo eléctrico entre duas placas' },
+  { word: 'inducao',        hint: 'Fenómeno pelo qual uma corrente eléctrica é gerada pela variação de um campo magnético próximo' },
+  { word: 'paralaxe',       hint: 'Diferença aparente na posição de um objecto quando observado de dois pontos distintos' },
+  // Arquitectura
+  { word: 'catedral',       hint: 'Igreja cristã principal de uma diocese, onde reside o bispo, geralmente de grandes dimensões' },
+  { word: 'basilica',       hint: 'Edifício religioso de planta rectangular com naves; originalmente um espaço público romano' },
+  { word: 'mosaico',        hint: 'Arte decorativa criada com pequenas peças coloridas de vidro, pedra ou cerâmica encaixadas' },
+  { word: 'abobada',        hint: 'Estrutura arquitectónica curva em arco usada para cobrir espaços interiores de edifícios' },
+  { word: 'minarete',       hint: 'Torre alta e estreita de uma mesquita de onde o muezim chama os fiéis à oração' },
+  // Matemática
+  { word: 'hipotenusa',     hint: 'Lado oposto ao ângulo recto num triângulo rectângulo; sempre o maior dos três lados' },
+  { word: 'circunferencia', hint: 'Linha curva fechada em que todos os pontos estão exactamente à mesma distância do centro' },
+  { word: 'parabola',       hint: 'Curva simétrica formada pela trajectória de um projéctil ou pela secção cónica de um cone' },
+  { word: 'elipse',         hint: 'Curva oval com dois focos; os planetas descrevem elipses em torno do Sol' },
+  // Linguagem e retórica
+  { word: 'hiperbole',      hint: 'Figura de linguagem que exagera intencionalmente para criar impacto. Ex: "Estou morto de fome"' },
+  { word: 'ironia',         hint: 'Figura de linguagem em que se diz o contrário do que se pensa, com efeito crítico ou humorístico' },
+  { word: 'sinestesia',     hint: 'Figura de linguagem que mistura sensações de sentidos diferentes. Ex: "perfume estridente"' },
+  { word: 'eufemismo',      hint: 'Expressão mais suave usada para substituir outra considerada ofensiva ou desagradável' },
+  { word: 'antitese',       hint: 'Figura de linguagem que coloca ideias opostas em paralelo. Ex: "Amor é fogo que arde sem se ver"' },
+  { word: 'polissemia',     hint: 'Propriedade de uma palavra ter múltiplos significados, como "manga" (fruta ou parte da roupa)' },
+  // Biologia avançada
+  { word: 'crustaceo',      hint: 'Animal artrópode com exoesqueleto duro e rígido, como caranguejos, lagostas e camarões' },
+  { word: 'molusco',        hint: 'Animal de corpo mole geralmente protegido por concha, como caracóis, lulas e polvos' },
+  { word: 'vertebrado',     hint: 'Animal que possui coluna vertebral interna, como peixes, répteis, aves e mamíferos' },
+  { word: 'invertebrado',   hint: 'Animal sem coluna vertebral; representa mais de 95% das espécies animais conhecidas' },
+  { word: 'taxonomia',      hint: 'Ciência que classifica e nomeia os seres vivos em categorias como reino, família e espécie' },
+  { word: 'genoma',         hint: 'Conjunto completo de informação genética de um organismo, contida no seu ADN' },
+  { word: 'fenotipo',       hint: 'Conjunto das características físicas visíveis de um organismo resultantes dos seus genes e ambiente' },
+  { word: 'quarentena',     hint: 'Período de isolamento imposto para prevenir a propagação de doenças contagiosas' },
+  { word: 'epidemia',       hint: 'Ocorrência de uma doença infecciosa em número anormalmente elevado numa região específica' },
+  { word: 'imunidade',      hint: 'Capacidade do organismo de resistir a agentes infecciosos graças ao sistema imunológico' },
+  { word: 'hemoglobina',    hint: 'Proteína nos glóbulos vermelhos que transporta oxigénio dos pulmões para os tecidos do corpo' },
+  // Tecnologia e informática
+  { word: 'criptografia',   hint: 'Técnica de codificar informação para que apenas destinatários autorizados a possam ler' },
+  { word: 'protocolo',      hint: 'Conjunto de regras que define como os computadores comunicam e trocam dados numa rede' },
+  { word: 'resolucao',      hint: 'Número de píxeis numa imagem digital; quanto maior, mais nítida e detalhada é a imagem' },
+  { word: 'compressao',     hint: 'Processo de reduzir o tamanho de ficheiros digitais sem perder a informação essencial' },
+  // Economia
+  { word: 'inflacao',       hint: 'Aumento generalizado e contínuo dos preços de bens e serviços ao longo do tempo' },
+  { word: 'deflacao',       hint: 'Queda generalizada dos preços numa economia, geralmente associada a falta de procura' },
+  { word: 'dividendo',      hint: 'Parte do lucro de uma empresa distribuída proporcionalmente aos seus accionistas' },
+  { word: 'recessao',       hint: 'Período de declínio económico prolongado, com redução do PIB e aumento do desemprego' },
+  // Gastronomia e ciência dos alimentos
+  { word: 'caramelizacao',  hint: 'Reacção química ao aquecer açúcar que lhe dá cor dourada e sabor intenso característico' },
+  { word: 'pasteurizacao',  hint: 'Processo de aquecimento a temperatura controlada para eliminar microrganismos nocivos em alimentos' },
+  { word: 'emulsao',        hint: 'Mistura estável de dois líquidos que normalmente não se misturam, como água e gordura na maionese' },
+  // Ecologia e ambiente
+  { word: 'ecotono',        hint: 'Zona de transição entre dois ecossistemas distintos, com características e espécies de ambos' },
+  { word: 'decomposicao',   hint: 'Processo pelo qual bactérias e fungos decompõem matéria orgânica morta em nutrientes minerais' },
+  { word: 'estuario',       hint: 'Zona costeira onde um rio encontra o mar, com mistura de água doce e salgada' },
+  { word: 'biodiversidade', hint: 'Variedade total de formas de vida num ecossistema, incluindo espécies, genes e habitats' },
+  // Arte e cultura
+  { word: 'surrealismo',    hint: 'Movimento artístico do século XX que explorava o subconsciente e os sonhos, como nas obras de Dalí' },
+  { word: 'impressionismo', hint: 'Movimento pictórico francês do século XIX focado na captação de luz e momento, como nas obras de Monet' },
+  { word: 'arquitetura',    hint: 'Arte e técnica de projectar e construir edifícios e outros espaços para uso humano' },
+  { word: 'patrimonio',     hint: 'Conjunto de bens culturais, históricos ou naturais de valor que são preservados para as gerações futuras' },
 ]
 
 function renderProgress(word, guessed) {
@@ -242,6 +264,12 @@ module.exports = {
 
     if (user.gemas < ENTRY_FEE) {
       await sock.sendMessage(from, { text: `❌ Precisas de ${gem(ENTRY_FEE)} para entrar no jogo.` }, { quoted: msg }); return
+    }
+
+    const limitResult = checkDailyLimit(sender, 'forca')
+    if (!limitResult.allowed) {
+      await handleLimitExceeded(sock, from, msg, sender, user.name, limitResult)
+      return
     }
 
     const entry = WORDS[Math.floor(Math.random() * WORDS.length)]

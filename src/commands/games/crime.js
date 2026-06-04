@@ -1,4 +1,5 @@
-const { getUser, updateUser, addGemas, removeGemas, addPontos } = require('../../database/users')
+const { getUser, updateUser, addGemas, removeGemas, addPontos, bankHeist } = require('../../database/users')
+const { checkDailyLimit, handleLimitExceeded } = require('../../utils/dailyLimit')
 const { checkCooldown, formatRemaining } = require('../../utils/cooldown')
 const { addXP } = require('../../utils/level')
 const { checkAndAward } = require('../../utils/achievements')
@@ -120,6 +121,12 @@ module.exports = {
       await sock.sendMessage(from, { text: `❓ Usa */crime lista* para ver os crimes disponíveis.` }, { quoted: msg }); return
     }
 
+    const limitResult = checkDailyLimit(sender, 'crime')
+    if (!limitResult.allowed) {
+      await handleLimitExceeded(sock, from, msg, sender, user.name, limitResult)
+      return
+    }
+
     const { ready, remaining } = checkCooldown(user.last_crime, CRIME_COOLDOWN_MS)
     if (!ready) {
       await sock.sendMessage(from, {
@@ -134,7 +141,17 @@ module.exports = {
 
     if (success) {
       const earned = Math.floor(Math.random() * (crime.reward[1] - crime.reward[0] + 1)) + crime.reward[0]
-      addGemas(sender, earned, `🦹 ${crime.name} — sucesso`)
+
+      let actualEarned = earned
+      let heistInfo = null
+
+      if (crime.id === 'roubo_armado') {
+        heistInfo = bankHeist(sender, earned)
+        actualEarned = heistInfo.stolen
+      } else {
+        addGemas(sender, earned, `🦹 ${crime.name} — sucesso`)
+      }
+
       addPontos(sender, crime.xp)
       const { leveledUp, newLevel } = addXP(sender, crime.xp)
       const awarded = checkAndAward(sender, 'crime', null)
@@ -147,10 +164,20 @@ module.exports = {
         ``,
         `📖 ${story}.`,
         ``,
-        `💎 Ganhou: *+${gem(earned)}*`,
-        `⭐ +${crime.xp} XP`,
-        `💳 Saldo: ${gem(updated.gemas)}`,
       ]
+
+      if (heistInfo) {
+        if (heistInfo.stolen === 0) {
+          lines.push(`💸 Os bancos do grupo estavam vazios! Não conseguiste roubar nada.`)
+        } else {
+          lines.push(`💎 Roubaste *+${gem(heistInfo.stolen)}* dos bancos do grupo!`)
+          lines.push(`👥 *${heistInfo.victims}* poupança(s) afectada(s) (−${gem(heistInfo.sharePerPerson)} cada)`)
+        }
+      } else {
+        lines.push(`💎 Ganhou: *+${gem(actualEarned)}*`)
+      }
+
+      lines.push(`⭐ +${crime.xp} XP`, `💳 Saldo: ${gem(updated.gemas)}`)
       if (leveledUp) lines.push(``, `🎉 *NÍVEL UP!* Nível ${newLevel}!`)
       if (awarded.length) lines.push(``, `🏅 Conquista: *${awarded[0].name}*!`)
 

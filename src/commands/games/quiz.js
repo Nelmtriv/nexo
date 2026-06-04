@@ -3,6 +3,7 @@ const { getActiveGame, saveActiveGame, deleteActiveGame } = require('../../datab
 const { addXP } = require('../../utils/level')
 const { gem } = require('../../utils/formatter')
 const { games } = require('../../config')
+const { checkDailyLimit, handleLimitExceeded } = require('../../utils/dailyLimit')
 
 let questions
 try { questions = require('../../../data/quiz.json') } catch { questions = [] }
@@ -48,6 +49,12 @@ module.exports = {
 
     if (!questions.length) {
       await sock.sendMessage(from, { text: '❌ Banco de perguntas vazio.' }, { quoted: msg })
+      return
+    }
+
+    const limitResult = checkDailyLimit(sender, 'quiz')
+    if (!limitResult.allowed) {
+      await handleLimitExceeded(sock, from, msg, sender, getUser(sender).name, limitResult)
       return
     }
 
